@@ -9,8 +9,6 @@ export const themeSlice = createSlice({
         setDardMode: (state,action) => {
             state.isDarkMode = !state.isDarkMode
         },
-        
-
     },
 });
 

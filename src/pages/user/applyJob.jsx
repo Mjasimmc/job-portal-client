@@ -26,7 +26,6 @@ const ApplyJob = () => {
 
     return (
         <>
-
             {verfication == 'success' && <ApplyForm />}
             {verfication == 'failed' && <WarnCreateEmployer>Create Employee Profile <br /> for applying </WarnCreateEmployer>}
             {verfication == 'pending' && <Loading />}

@@ -5,6 +5,8 @@ import { validate } from '../../../config/validations';
 import { toast } from 'react-toastify'
 import { toast_config } from '../../../config/constants';
 import { createEmployerProfile, getEmployerDatab } from '../../../service/user';
+import InputTextField from '../../../ui/elements/InputTextField';
+import MyButton from '../../../ui/elements/myButton';
 const EditEmployerProfile = () => {
     const navigate = useNavigate()
 
@@ -107,30 +109,31 @@ const EditEmployerProfile = () => {
                     <p className=' md:col-span-4 flex items-center'>Company Name : </p>
 
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"company name"}
                             value={employerData.company_name.text}
                             error={!employerData.company_name.valid}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'company_name')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.company_name.valid && <p className='text-xs text-[red]'>Input Company Name</p>}
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Company Location : </p>
 
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"company_location "}
                             value={employerData.company_location.text}
                             error={!employerData.company_location.valid}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'company_location')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.company_location.valid && <p className='text-xs text-[red]'>Input Company Location</p>}
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Website : </p>
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"company_website "}
                             value={employerData.company_website.text}
                             error={!employerData.company_website.valid}
 
@@ -138,18 +141,17 @@ const EditEmployerProfile = () => {
                                 handleInput(e.target.value, 'company_website')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.company_website.valid && <p className='text-xs text-[red]'>Input Valid URL</p>}
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Email : </p>
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"company_email "}
                             value={employerData.company_email.text}
                             error={!employerData.company_email.valid}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'company_email')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.company_email.valid && <p className='text-xs text-[red]'>Input Valid Company Mail</p>}
                     </div>
                 </div>
                 <div className="max-md:w-full md:w-8/12 shadows max-md:flex max-md:flex-col md:grid md:grid-cols-10 gap-3 p-4">
@@ -158,40 +160,40 @@ const EditEmployerProfile = () => {
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Full Name : </p>
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"employer_name "}
                             value={employerData.employer_name.text}
                             error={!employerData.employer_name.valid}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'employer_name')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.employer_name.valid && <p className='text-xs text-[red]'>Input Valid Name</p>}
-                    </div>
+                     </div>
                     <p className=' md:col-span-4 flex items-center'> Position At Company : </p>
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"Employer Position"}
                             value={employerData.employer_position.text}
                             error={!employerData.employer_position.valid}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'employer_position')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.employer_position.valid && <p className='text-xs text-[red]'>Input Your Position on Company</p>}
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Contact : </p>
                     <div className="md:!col-span-6 !caret-black grid">
-                        <TextField
+                        <InputTextField
+                            label={"employer_contact"}
                             error={!employerData.employer_contact.valid}
                             value={employerData.employer_contact.text}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'employer_contact')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                        {!employerData.employer_contact.valid && <p className='text-xs text-[red]'>Input Valid Number</p>}
                     </div>
                 </div>
                 <div className="p-4">
-                    <Button className='!bg-[#e0e0e0] !p-3 !text-xl' onClick={submitEditEmployerProfile}>submit</Button>
+                    <MyButton className='!bg-[#e0e0e0] !p-3 !text-xl' onClick={submitEditEmployerProfile}>submit</MyButton>
                 </div>
             </div>
         </>

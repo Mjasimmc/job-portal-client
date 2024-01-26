@@ -7,6 +7,7 @@ import JobCardsAdmin from './jobCardsAdmin';
 import { getAdminFilteredData } from '../../../service/admin/jobManagement';
 import MyButton from '../../../ui/elements/myButton';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@mui/icons-material';
+import Loading from '../../../ui/LoadingPages/Loading';
 
 const ListJobs = () => {
     const location = useLocation();
@@ -35,6 +36,8 @@ const ListJobs = () => {
         } catch (error) {
             console.log(error)
             toast.error('error occured on fetching jobs', toast_config)
+        } finally{
+            setLoad(false)
         }
 
     }
@@ -57,11 +60,12 @@ const ListJobs = () => {
                 </MyButton>}
             </div>
         </div>
-        <div className='w-full md:px-10 font-[400] grid sm:grid-cols-2 xl:grid-cols-3 gap-6 p-2'>
+        {load && <Loading />}
+       {!load && <div className='w-full md:px-10 font-[400] grid sm:grid-cols-2 2xl:grid-cols-3 duration-1000 gap-6 p-2'>
             {jobs.map((job) => (
                 <JobCardsAdmin key={job._id} job={job} />
             ))}
-        </div>
+        </div>}
     </>
     );
 }

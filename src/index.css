@@ -7,7 +7,6 @@ body {
 }
 
 #root {
-
   color: #0e1239;
 }
 
@@ -161,10 +160,10 @@ body {
   font-family: inherit;
   width: 100%;
   border: none;
-  border-bottom: 2px solid #9b9b9b;
+  border-bottom: 2px solid #808080;
   outline: 0;
   /* font-size: 17px; */
-  padding: 7px 10px   ;
+  padding: 7px 10px;
   background: transparent;
   transition: border-color 0.2s;
 }
@@ -180,9 +179,11 @@ body {
 }
 
 .form__label {
+
+  
   position: absolute;
   top: 0;
-  left: 2rem;
+  left: 1rem;
   display: block;
   transition: 0.2s;
   font-size: 17px;
@@ -198,15 +199,20 @@ body {
   margin-top: 10px;
 }
 
+.form__field~.form__label {
+  color:inherit
+}
+
 .form__field:focus~.form__label {
   position: absolute;
   top: 0;
   display: block;
-  transition: 0.2s;
-  font-size: 17px;
+  transition: 0.3s;
+  font-size: 18px;
   color: #0ebfec;
   font-weight: 700;
 }
+
 /* 
 .form__field:required,
 .form__field:invalid {

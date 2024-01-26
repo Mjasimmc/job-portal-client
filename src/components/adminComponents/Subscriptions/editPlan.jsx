@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { adminUpdateSubscription, getSubscriptionDataWithId } from '../../../service/subscription';
 import { useSelector } from 'react-redux';
+import InputTextField from '../../../ui/elements/InputTextField';
+import MyButton from '../../../ui/elements/myButton';
 // import { adminCreateSubscription } from '../../../service/subscription';
 const EditPlan = () => {
     const navigate = useNavigate();
@@ -54,11 +56,11 @@ const EditPlan = () => {
 
     return (
         <div className="p-5">
-            <div className={`max-w-[25rem] grid gap-2 border p-4 rounded-md ${isDarkMode ?'bg-white/50':'bg-black/50'}`}>
+            <div className={`max-w-[25rem] grid gap-2 border p-4 rounded-md bg-gray-300/50`}>
                 <h1 className="text-2xl font-[300] uppercase p-3 text-center ">Create new subscription plan</h1>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Plan Name"
                         fullWidth
                         value={planData.name}
@@ -67,7 +69,7 @@ const EditPlan = () => {
                 </div>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Duration (in months)"
                         fullWidth
                         type="number"
@@ -77,7 +79,7 @@ const EditPlan = () => {
                 </div>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Cost"
                         fullWidth
                         type="number"
@@ -87,7 +89,7 @@ const EditPlan = () => {
                 </div>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Job Limit"
                         fullWidth
                         type="number"
@@ -96,9 +98,9 @@ const EditPlan = () => {
                     />
                 </div>
                 <div className="flex justify-center">
-                    <Button className="!text-lg !p-2 !bg-[#d1d1d1]" onClick={submitSubscriptionPlan}>
+                    <MyButton className="!text-lg !px-6 !bg-[#d1d1d1]" onClick={submitSubscriptionPlan}>
                         Save
-                    </Button>
+                    </MyButton>
                 </div>
             </div>
         </div>

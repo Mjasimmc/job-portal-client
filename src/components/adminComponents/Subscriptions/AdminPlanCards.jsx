@@ -27,9 +27,9 @@ const AdminPlanCards = ({ plan }) => {
     };
 
     return (
-        <div className='p-4 job-card bg-white/5 rounded-lg grid gap-2'>
+        <div className='p-4 job-card bg-white/5 rounded-lg grid gap-7'>
             <h1 className='text-center text-2xl font-[350] uppercase list-inside p-4'>{plan.name}</h1>
-            <h1 className='text-center text-xl font-[400] uppercase list-inside '>${plan.price}</h1>
+            <h1 className='text-center text-xl font-[400] uppercase list-inside '>RS : {plan.price}</h1>
             <h1 className='text-center text-xl font-[400] uppercase list-inside '>Post Limit : {plan.jobPostLimit}</h1>
             <h1 className='text-center text-md font-[400]  list-inside '>
                 Valid Up to {getDurationDescription(plan.duration)}

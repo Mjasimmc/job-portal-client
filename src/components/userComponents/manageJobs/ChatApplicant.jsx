@@ -77,10 +77,7 @@ const ChatApplicant = ({ userId, job }) => {
         scrollToBottom();
     }, [applicantMessages]);
 
-    useEffect(() => {
-        console.log(applicantMessages);
-    }, [applicantMessages]);
-
+ 
     return (
         <>
             <div className="w-full flex-1 p-4 flex flex-col">

@@ -8,7 +8,7 @@ const InputTextField = (props) => {
             <input  type="input" value={props.value} onChange={props.onChange} className={`form__field  ${props.className} `} placeholder="Name" required="" />
             <label htmlFor="name" className={`form__label text-[#00000064] ${props.error && 'text-[red]'}`}>{props.label}</label>
 
-            {props.error &&<p className='text-xs text-[red]'>{props.label} is required</p>}
+            {props.error &&<p className='text-xs text-[red]'>invalid {props.label}</p>}
         </div>
     );
 }

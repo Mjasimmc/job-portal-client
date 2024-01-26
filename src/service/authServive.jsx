@@ -65,3 +65,12 @@ export const userChangePassword = async (email,password)=>{
         throw error.response.data || "server error"
     }
 }
+
+export const userLoginGoogleAuthFirebase = async (email)=>{
+    try {
+        const res = await ApiCall.post('auth/google-login',{email})
+        return res.data
+    } catch (error) {
+        throw error.response.data || "server error"
+    }
+}

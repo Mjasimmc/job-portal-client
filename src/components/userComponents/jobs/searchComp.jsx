@@ -74,9 +74,10 @@ const SearchComp = () => {
 
     const handleSubmitSearch = () => {
         const searchQuery = new URLSearchParams({
-            ...(searchParams.jobs ? { jobs: searchParams.jobs } : {}),
-            ...(searchParams.company ? { company: searchParams.company } : {}),
-            ...(searchParams.location ? { location: searchParams.location } : {}),
+            // ...(searchParams.jobs ? { jobs: searchParams.jobs } : {}),
+            // ...(searchParams.company ? { company: searchParams.company } : {}),
+            // ...(searchParams.location ? { location: searchParams.location } : {}),
+            ...searchParams
         }).toString();
 
         const filterQuery = new URLSearchParams({

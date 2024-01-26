@@ -14,6 +14,7 @@ const ListJobs = () => {
 
     const getSearchQuery = () => {
         const queryParams = new URLSearchParams(location.search);
+        console.log(queryParams)
         return {
             role: queryParams.get('jobs') || '',
             company: queryParams.get('company') || '',
@@ -30,8 +31,10 @@ const ListJobs = () => {
             const search = getSearchQuery();
             setLoad(true)
             const filteredJobs = await getAllJobsFromServer({ ...search });
+            setLoad(false)
             setJobs(filteredJobs);
         } catch (error) {
+            setLoad(false)
             console.error(error);
         } finally {
             setLoad(false)
@@ -62,7 +65,7 @@ const ListJobs = () => {
                     </MyButton>}
                 </div>
             </div>
-            {!load && <div className='w-full md:px-10 font-[400] grid sm:grid-cols-2 xl:grid-cols-3 gap-6 p-2'>
+            {!load && <div className='w-full md:px-10 font-[400] grid md:grid-cols-2 xl:grid-cols-3 gap-5 p-2'>
                 {jobs.map((job) => (
                     <JobCards key={job._id} job={job} />
                 ))}

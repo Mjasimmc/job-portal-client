@@ -10,10 +10,14 @@ import { applyJobService, validateJobApplied } from '../../../service/userApplyJ
 import { getAllEmployeeResumes } from '../../../service/resumeMangement';
 import MyButton from '../../../ui/elements/myButton';
 import { BaseURL } from '../../../config_Api';
+import SuccessPageJobApplied from '../appliedJobs/successPage';
+import Loading from '../../../ui/LoadingPages/Loading';
 
 const ApplyForm = () => {
     const navigate = useNavigate();
     const [jobApplied, setJobApplied] = useState(false)
+    const [jobApplySucess, setJobApplySucess] = useState(false)
+    const [loadPage,setLoadPage] = useState(false)
     const { jobId } = useParams();
     const {
         setPageNotFound,
@@ -25,7 +29,7 @@ const ApplyForm = () => {
     const [resumeList, setResumeList] = useState([])
     const [applicationData, setApplicationData] = useState({
         coverLetter: '',
-        selectedResumeId: '',   
+        selectedResumeId: '',
     });
     const getEmployeesData = async () => {
         try {
@@ -73,9 +77,9 @@ const ApplyForm = () => {
             const application = getValidatedData();
             if (!application) throw '';
             const res = await applyJobService(application);
+            setJobApplySucess(true)
             toast.success("Applied successfully", toast_config);
-            // Optionally, you can redirect to another page after successful submission
-            // navigate('/success-page');
+          
         } catch (error) {
             toast.error("Error occurred on submitting", toast_config);
         }
@@ -83,17 +87,21 @@ const ApplyForm = () => {
 
     const getJobData = async () => {
         try {
+            setLoadPage(true)
             const job = await getJobDetailsWithId(jobId);
             if (!job) return setPageNotFound(true);
             const applied = await validateJobApplied(jobId);
-            console.log(applied)
             if (applied) {
                 setJobApplied(true)
                 return toast.error('Already Applied')
+            }else{
+                getEmployeesData();
             }
-            getEmployeesData();
         } catch (error) {
+            setLoadPage(false)
             return setServerError(true);
+        }finally{
+            setLoadPage(false)
         }
     };
 
@@ -102,25 +110,28 @@ const ApplyForm = () => {
     }, []);
 
     return (
-        <Container className='font-[300]' component="main" maxWidth="sm">
+    <>
+    {!loadPage && <Loading />}
+       {loadPage && <Container className='font-[300]' component="main" maxWidth="sm">
             <CssBaseline />
+            {jobApplySucess && <SuccessPageJobApplied />}
             {jobApplied && <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
-            <Typography variant="h4" align="center" gutterBottom>
-                   Already applied
+                <Typography variant="h4" align="center" gutterBottom>
+                    Already applied
                 </Typography>
-                    </Paper>}
-            {!jobApplied && <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
+            </Paper>}
+            {!jobApplied && !jobApplySucess && <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
                 <Typography variant="h4" align="center" gutterBottom>
                     Apply for Job
                 </Typography>
-                { employeeData && (
+                {employeeData && (
                     <>
                         <div className="p-2 grid max-w-max grid-cols-8 ">
                             <p className='col-span-3'>Full Name</p><p>:</p> <p className='col-span-4'>{employeeData.full_name}</p>
                             <p className='col-span-3'>Email</p><p>:</p> <p className='col-span-4'>{employeeData.email}</p>
                             <p className='col-span-3'>Phone</p><p>:</p> <p className='col-span-4'>{employeeData.phone}</p>
                         </div>
-                        <p> <strong> Education</strong></p>
+                        {!!education.length && <p> <strong> Education</strong></p>}
                         <div className="p-2 grid gap-4 md:grid-cols-2">
                             {education.map((edu) => (
                                 <div key={edu._id} className='border p-3 rounded-lg'>
@@ -131,7 +142,7 @@ const ApplyForm = () => {
                                 </div>
                             ))}
                         </div>
-                        <p> <strong> Experience</strong></p>
+                        {!!experience.length && <p> <strong> Experience</strong></p>}
                         <div className="p-2 grid gap-4 md:grid-cols-2">
                             {experience.map((exp) => (
                                 <div key={exp._id} className='border p-3 rounded-lg'>
@@ -187,7 +198,8 @@ const ApplyForm = () => {
                     </div>
                 </div>
             </Paper>}
-        </Container>
+        </Container>}
+    </>
     );
 };
 

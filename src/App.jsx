@@ -10,43 +10,62 @@ import { userAuthenticate } from "./service/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserLogin, setUserLogout } from "./store/slices/userSlice";
 import { UserMainContext } from "./store/contexts/userContext";
-import Error404 from "./pages/errorPages/error404";
 import Error500 from "./pages/errorPages/error500";
 import { socket } from "./socketIo";
 
 function App() {
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
-  const {
-    pageNotFound,
-    serverError,
-  } = useContext(UserMainContext)
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const { serverError } = useContext(UserMainContext);
+
   const userAuth = async () => {
     try {
-      const user = await userAuthenticate()
-      socket.connect()
-      socket.emit('createRoom', user._id)
-      dispatch(setUserLogin(user))
+      const user = await userAuthenticate();
+      socket.connect({ secure: true });
+      socket.emit('createRoom', user._id);
+      dispatch(setUserLogin(user));
     } catch (error) {
-      dispatch(setUserLogout())
-
+      console.error("Authentication error:", error);
+      dispatch(setUserLogout());
     }
-  }
+  };
+
   useEffect(() => {
-    userAuth()
-    socket.on('disconnect', () => {
-      location.reload()
-  })
-  }, [socket])
+    if (user.isLogin) {
+      userAuth();
+    }
+  }, [user.isLogin]);
+
+  useEffect(() => {
+    const handleDisconnect = () => {
+      console.log("Socket disconnected");
+        // Reconnect the socket when disconnected.
+        // socket.connect({ secure: true });
+      // Optionally, you can emit events or perform other actions on reconnection.
+      socket.emit('reconnectEvent', { secure: true });
+    };
+
+    socket.on('disconnect', handleDisconnect);
+
+    return () => {
+      // Clean up the event listener when the component unmounts.
+      socket.off('disconnect', handleDisconnect);
+    };
+  }, []);
+
   return (<>
     <BrowserRouter>
-      {/* {pageNotFound && <Error404 />} */}
-      {serverError && <Error500 />}
-      {!pageNotFound && !serverError && <>
-        <UserRoutes />
-        <AdminRoutes />
-      </>}
-    </BrowserRouter>
+        {serverError && <Error500 />}
+        {!serverError && (
+          <>
+            
+              <UserRoutes />
+              <AdminRoutes />
+          
+          </>
+        )}
+      </BrowserRouter>
+      {/* <ToastContainer /> */}
 
   </>
   )

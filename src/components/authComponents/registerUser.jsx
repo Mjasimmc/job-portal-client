@@ -150,7 +150,7 @@ const RegisterUser = () => {
             <span className="login-css-fgtpass"><a href="#" className='login-css-form-input-a'>Forgot Password ?</a></span>
 
             <button className="login-css-button" type="submit" onClick={() => submitRegister()} >
-                Sign In
+                Register
             </button>
         </>
     );

@@ -6,6 +6,7 @@ import { uploadResume } from '../../../service/resumeMangement';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { useNavigate } from 'react-router-dom';
+import MyButton from '../../../ui/elements/myButton';
 
 const ResumeList = () => {
     const navigate = useNavigate()
@@ -32,12 +33,13 @@ const ResumeList = () => {
         }
     };
 
-    return (
+    return (<>
+    
         <Container className='font-[300]' component="main" maxWidth="md">
             <CssBaseline />
             <Paper elevation={3} style={{ padding: '20px', marginTop: '20px' }}>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Resume List
+                    Add Resumes
                 </Typography>
 
                 <div>
@@ -89,20 +91,19 @@ const ResumeList = () => {
                             <p>PDF cannot be displayed.</p>
                         </object>
 
-                        <div className='pt-3'>
-                            <Button
-                                variant="contained"
-                                color="primary"
+                        <div className='mt-3'>
+                            <MyButton
+                                className="!p-2 !text-[1.4rem] !px-7"
                                 onClick={handleSaveResume}
                             >
                                 Save
-                            </Button>
+                            </MyButton>
                         </div>
                     </div>
                 )}
             </Paper>
         </Container>
-    );
+   </> );
 }
 
 export default ResumeList;

@@ -4,6 +4,7 @@ import { Filter, Search, RadioButtonChecked, RadioButtonUnchecked } from '@mui/i
 import { Button, TextField, MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 import MyButton from '../../../ui/elements/myButton';
 import { useSelector } from 'react-redux';
+import InputTextField from '../../../ui/elements/InputTextField';
 
 const AdminSearchJobs = () => {
     const navigate = useNavigate();
@@ -94,19 +95,19 @@ const AdminSearchJobs = () => {
                 <div className={`grid job-card   rounded-lg ${backgorundColor()}`}>
                     <div className='w-full flex flex-col items-center p-2 '>
                         <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-2 ">
-                            <TextField
+                            <InputTextField
                                 className='shadows !z-0 !caret-black'
                                 label='Role'
                                 value={searchParams.jobs}
                                 onChange={(e) => handleChange('jobs', e.target.value)}
                             />
-                            <TextField
+                            <InputTextField
                                 className='shadows !z-0 !caret-black'
                                 label='Company'
                                 value={searchParams.company}
                                 onChange={(e) => handleChange('company', e.target.value)}
                             />
-                            <TextField
+                            <InputTextField
                                 className='shadows !z-0 !caret-black'
                                 label='Location'
                                 value={searchParams.location}

@@ -7,11 +7,12 @@ export const adminSlice = createSlice({
     },
     reducers: {
         setAdminLogin: (state,action) => {
-            
+            console.log(action.payload)
             localStorage.setItem('admintoken',action.payload.token)
             state.isLogin = true
         },
         setAdminLogout: (state) => {
+            localStorage.removeItem('admintoken')
             state.isLogin = false
         },
 

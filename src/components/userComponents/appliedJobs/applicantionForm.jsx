@@ -13,6 +13,7 @@ const ApplicantionForm = () => {
     const { applicantId } = useParams()
     const [applicantData, setApplicantData] = useState(null)
     const [showCV, setShowCV] = useState(false)
+
     const getData = async (applicantionId) => {
         try {
             const applicantDetails = await getApplicantDataWithId(applicantionId)

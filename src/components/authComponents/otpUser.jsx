@@ -5,6 +5,10 @@ import { validateOtp } from '../../service/authServive';
 import { useDispatch } from 'react-redux';
 import { setUserLogin } from '../../store/slices/userSlice';
 import { socket } from '../../socketIo';
+import MyButton from '../../ui/elements/myButton';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../config/constants';
+import InputTextField from '../../ui/elements/InputTextField';
 
 const OtpUser = () => {
     const params = useParams()
@@ -12,25 +16,26 @@ const OtpUser = () => {
     const [otp, setOtp] = useState('')
     const submitotp = async ()=>{
         try {
+            if(!otp) throw 'otp not found'
             const res = await validateOtp(otp,params.otpId)
             dispatch(setUserLogin(res))
             socket.connect()
             socket.emit('createRoom', res._id)
         } catch (error) {
-            
+            toast.error('otp not validated',toast_config)
         }
     }
     return (
         <>
             <div className="flex flex-col justify-center items-center  gap-3">
-                <h1 className='text-3xl'>Enter Otp</h1>
-                <TextField
-                    className='text-cadet !text-center'
+             
+                <InputTextField
                     label="Enter otp"
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                 />
-                <Button className='!text-lg !p-2 !bg-[#d1d1d1]' onClick={submitotp} >Submit</Button>
+                <MyButton className='!text-lg !p-2 !bg-[#d1d1d1]' onClick={submitotp} >Submit</MyButton>
+                <MyButton className='!text-lg !p-2 !bg-[#d1d1d1]' onClick={submitotp} >Re-send</MyButton>
             </div>
         </>
     );

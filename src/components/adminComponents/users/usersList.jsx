@@ -5,29 +5,34 @@ import MyButton from '../../../ui/elements/myButton';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { Block, Edit, RemoveRedEye } from '@mui/icons-material';
+import Loading from '../../../ui/LoadingPages/Loading';
 
 const UsersList = () => {
     const navigate = useNavigate()
     const [userList, setUserList] = useState([])
+    const [load, setLoad] = useState(false)
     const getAllUsers = async () => {
         try {
+            setLoad(true)
             const res = await getAllUsersData()
             setUserList(res)
         } catch (error) {
             toast.error('error occured on fetching data', toast_config)
+        } finally {
+            setLoad(false)
         }
     }
     useEffect(() => {
         getAllUsers()
     }, [])
     return (<>
-        <div className="p-2 grid">
+        <div className="p-2 grid gap-4">
             <div className="w-full flex justify-end">
                 <MyButton className='p-2  m-2 rounded-md px-4' onClick={() => navigate('create')}>CREATE NEW USER</MyButton>
             </div>
             <div className="overflow-auto ">
-
-                <div className='w-full text-center grid min-w-[34rem] '>
+                {load && <Loading />}
+                {!load && <div className='w-full text-center grid min-w-[34rem] '>
                     <table>
                         <thead>
 
@@ -66,7 +71,7 @@ const UsersList = () => {
                     </table>
                     <hr />
 
-                </div>
+                </div>}
             </div>
         </div>
     </>

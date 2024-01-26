@@ -30,9 +30,9 @@ const UserProfileImage = () => {
     return (
         <>
             {!isLogin && (
-                <Button onClick={() => navigate('/auth/login')}>
-                    <LoginRounded className="!text-3xl aspect-square !text-black" />
-                </Button>
+                <button className='p-4' onClick={() => navigate('/auth/login')}>
+                    <LoginRounded className="!text-3xl aspect-square" />
+                </button>
             )}
             {isLogin && (
                 <>

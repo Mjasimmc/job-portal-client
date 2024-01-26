@@ -36,7 +36,7 @@ const CheckoutPage = ({ plan }) => {
                         await savePaymentWithPaymentId({ ...response, ordeId: res.order.receipt });
                         navigate('/subscribtion')
                     } catch (error) {
-                        console.log(error )
+                        console.log(error)
                     }
                 },
                 prefill: {

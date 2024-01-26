@@ -7,6 +7,7 @@ import { socket } from '../../socketIo';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../config/constants';
 import Loading from '../../ui/LoadingPages/Loading';
+import { BaseURL } from '../../config_Api';
 
 const ApplicantPage = () => {
     const { applicantId } = useParams()
@@ -15,7 +16,7 @@ const ApplicantPage = () => {
     const getData = async () => {
         try {
             const applicantDetails = await getApplicantDataWithId(applicantId)
-            console.log(applicantDetails.user._id)
+           
             socket.emit('createRoom', applicantDetails.user._id)
             setApplicantData(applicantDetails)
         } catch (error) {
@@ -40,7 +41,9 @@ const ApplicantPage = () => {
                         
                     </p>}
                     <div className="flex flex-wrap gap-4">
-                        <MyButton>View Resume</MyButton>
+                        <MyButton  onClick={() => {
+                        window.open(BaseURL + "/uploads/" + applicantData.resume_id, '_blank');
+                    }}>View Resume</MyButton>
                         <MyButton>View Profile</MyButton>
                     </div>
                 </div>

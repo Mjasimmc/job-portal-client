@@ -47,7 +47,7 @@ const AdminSidebar = () => {
     }
     return (<>
 
-        <section className={`fixed left-0 top-0 border z-[90] duration-500 !w-[12rem] flex gap-1  pt-0 sidebar-height bg-white flex-col ${sideBarOpen ? "max-lg:-translate-x-[0] " : 'max-lg:-translate-x-[100%]'}`}
+        <section className={`fixed left-0 top-0 z-[90] duration-500 !w-[12rem] flex gap-1  pt-0 sidebar-height  flex-col shadow-lg ${sideBarOpen ? "max-lg:-translate-x-[0] " : 'max-lg:-translate-x-[100%]'}`}
             onMouseLeave={() => setSideBarOpen(false)}>
             <div className={`p-1 uppercase flex-1 shadow rounded-md overflow-auto ${backgrouColor()}`}>
                 {adminSidebarOptions.map((option, i) => (

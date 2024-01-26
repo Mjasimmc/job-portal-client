@@ -8,7 +8,7 @@ import { getAllMessage, sendMessageToApplicationId } from '../../../service/jobL
 import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import MyChat from '../manageJobs/myChat';
-// import MyChat from './myChat';
+
 
 const ChatEmployer = ({ userId,job }) => {
     const isDarkMode = useSelector(state => state.theme.isDarkMode);
@@ -63,6 +63,7 @@ const ChatEmployer = ({ userId,job }) => {
 
             const messageStored = await sendMessageToApplicationId(sendMessageData, applicantId, 'text');
             setApplicantMessages((prev) => [...prev, messageStored]);
+            
             setSendMessageData('');
             socket.emit('sendMessage', {
                 ...messageStored,
