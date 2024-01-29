@@ -34,8 +34,8 @@ const ListJobs = () => {
             setLoad(false)
             setJobs(filteredJobs);
         } catch (error) {
+            console.log(error);
             setLoad(false)
-            console.error(error);
         } finally {
             setLoad(false)
         }

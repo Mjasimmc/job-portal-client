@@ -16,7 +16,7 @@ export const getAllJobsFromServer = async (search) => {
         const res = await ApiCall.post('user-un-auth/get-filtered-data', search)
         return res.data
     } catch (error) {
-        throw error.response.data ? error.response.data : 'server not connected'
+        throw error
     }
 }
 export const getJobDetailsWithId = async (jobId) => {
