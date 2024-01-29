@@ -1,6 +1,6 @@
 import axios from 'axios'
-const prdctn = false
-export const BaseURL = prdctn ? 'http://13.60.23.95' : 'http://localhost:4000'
+// const prdctn = true
+export const BaseURL = 'http://13.60.23.95'
 
 const ApiCall = axios.create({
     baseURL: BaseURL + "/api"
