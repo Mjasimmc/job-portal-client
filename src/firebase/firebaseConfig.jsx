@@ -38,9 +38,11 @@ export const googleAuth = () => {
           resolve(result)
         })
         .catch((error) => {
+          console.log(error)
           reject(error)
         });
     } catch (error) {
+      console.log(error)
       reject(error)
     }
   })
