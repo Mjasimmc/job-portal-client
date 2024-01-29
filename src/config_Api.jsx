@@ -1,6 +1,7 @@
 import axios from 'axios'
-// const prdctn = true
-export const BaseURL = 'http://13.60.23.95'
+const renderServer = 'https://server-careerharbor.onrender.com'
+// const awsServer = 'http://13.60.23.95'
+export const BaseURL = renderServer
 
 const ApiCall = axios.create({
     baseURL: BaseURL + "/api"
