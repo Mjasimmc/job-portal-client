@@ -28,11 +28,11 @@ const AppliedJobs = () => {
     }, [])
     return (<>
         {load && <Loading />}
-        {!load && !applications.length && <div className='w-full aspect-[2] text-3xl p-4'>No Applied Jobs</div>}
-        {!load && applications.length && <div className='w-full grid p-4 px-2 md:px-10 font-[300]'>
+        {!load && !applications.length && <div className='w-full  text-3xl p-4'>No Applied Jobs</div>}
+        {!load && !!applications.length && <div className='w-full grid p-4 px-2 md:px-10 font-[300]'>
             <div className="grid gap-2 p-2">
                 {applications.map((applicantion, i) => (
-                    <div className="border flex gap-2 flex-wrap justify-between items-center p-2" key={applicantion._id}>
+                    <div className="border flex gap-2 flex-wrap justify-between items-center p-2 animate-cards" key={applicantion._id}>
                         <div className="flex items-center gap-2 min-w-max">
                             <p>{i + 1} </p>
                             <p>{applicantion.job_id.role} </p>

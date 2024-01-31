@@ -91,7 +91,7 @@ const AdminSearchJobs = () => {
 
     return (
         <>
-            <div className="w-full grid   p-4 px-2 md:px-10 ">
+            <div className="w-full grid   p-4 px-2 md:px-10 animate-cards  ">
                 <div className={`grid job-card   rounded-lg ${backgorundColor()}`}>
                     <div className='w-full flex flex-col items-center p-2 '>
                         <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-2 ">

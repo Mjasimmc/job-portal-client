@@ -69,13 +69,14 @@ const PATHS = {
 const UserRoutes = () => {
     return (
         <Routes>
-            <Route path={PATHS.HOME} element={<FullBody><Outlet /></FullBody>}>
+            <Route path={PATHS.HOME} element={<Outlet />}>
                 <Route path={PATHS.HOME} element={<>
                     <UserHeader />
-
-                    <ContentBody><Outlet /></ContentBody>
+                    <FullBody>
+                        <ContentBody><Outlet /></ContentBody>
+                    </FullBody>
                 </>} >
-                    <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><Home /></Suspense>} />  
+                    <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><Home /></Suspense>} />
                     <Route path={PATHS.ABOUT} element={<Suspense fallback={<Loading />}><AboutPage /></Suspense>} />
                     <Route path={PATHS.HOME} element={<> <UserNotLogged /><Outlet />  </>} >
 

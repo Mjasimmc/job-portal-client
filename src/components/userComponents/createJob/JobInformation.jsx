@@ -135,7 +135,7 @@ const JobInformation = ({ setFormNumber }) => {
         }
     };
     return (
-        <div className={`flex flex-col gap-4 border rounded-lg ${isDarkMode ? "bg-[#ffffff62]" : ''}`}>
+        <div className={`flex flex-col gap-4 border rounded-lg `}>
             <p className='text-xl font-semibold m-2'>Job Information</p>
 
             <div className="grid md:grid-cols-2 gap-4 p-2">
@@ -151,8 +151,8 @@ const JobInformation = ({ setFormNumber }) => {
                 </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4 p-2">
-                <div className="grid">
+            <div className="grid md:grid-cols-2 gap-4 p-2 ">
+                <div className="grid ">
                     <InputTextField
                         className='!caret-black'
                         label="Vacancy"
@@ -166,9 +166,9 @@ const JobInformation = ({ setFormNumber }) => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-4 p-2">
-                <div className="grid">
+                <div className="grid !bg-white rounded-md pt-4">
                     <Autocomplete
-                        className='!caret-black !text-black'
+                        className='!caret-black '
                         options={[...new Set([...(typedQualification ? [typedQualification] : []), ...qualificationOptions])]}
                         getOptionLabel={(option) => option}
                         value={jobData?.qualification || null} // Ensure a valid option or null
@@ -202,9 +202,9 @@ const JobInformation = ({ setFormNumber }) => {
             </div>
 
             <div className="grid gap-4 p-2 pt-5">
-                <div className="grid">
+                <div className="grid bg-white rounded-md pt-4  max-w-3xl">
                     <TextField
-                        className='!caret-black max-w-3xl'
+                        className='!caret-black '
                         multiline
                         minRows={5}
                         maxRows={30}
@@ -224,7 +224,7 @@ const JobInformation = ({ setFormNumber }) => {
                         {jobTypes?.map((title, index) => (
                             <button
                                 key={index}
-                                className='!bg-slate-500 p-1 px-3 flex items-center gap-2 !shadow !rounded-lg text-white'
+                                className={`p-1 px-3 flex items-center gap-2 !shadow !rounded-lg ${isDarkMode?'bg-gray-900':'!bg-[#C3B0B7]'}`}
                                 onClick={() => handleJobTypeToggle(title)}>
                                 {jobData?.jobType && jobData?.jobType?.includes(title) ? <RadioButtonChecked /> : <RadioButtonUnchecked />}
                                 {title}

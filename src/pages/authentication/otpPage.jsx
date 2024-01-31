@@ -13,15 +13,12 @@ const OtpPage = () => {
     return (<>
         <UserLogged />
         <NoHeaderContentBody>
-            <div className="flex gap-4 items-center">
-                
-            <div className=" w-full max-w-[20rem]  gap-3  grid p-2 bg-gray-300/50 rounded-md">
-                <OtpUser />
-            </div>
-            <div className=" w-full flex flex-col items-center gap-5 justify-center max-w-[20rem] max-lg:hidden ">
-                <h1 className='text-3xl'>Enter Otp</h1>
-                <img src={banner_1} className='w-full aspect-square shadows  ' alt="" />
-            </div>
+            <div className='login-css-container text-black'>
+                <div className="login-css-heading">OTP</div>
+                <div action="" className="form">
+                    <OtpUser />
+                </div>
+
             </div>
         </NoHeaderContentBody >
     </>

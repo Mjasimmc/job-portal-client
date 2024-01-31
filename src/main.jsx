@@ -7,9 +7,11 @@ import Config from './store/config.jsx'
 import "./assets/styles/formStyle.css"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Config>
+  <Config>
       <App />
     </Config>
-  </React.StrictMode>,
 )
+
+// <React.StrictMode>
+
+// </React.StrictMode>,

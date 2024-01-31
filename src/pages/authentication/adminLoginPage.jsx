@@ -23,11 +23,12 @@ const AdminLoginPage = () => {
     }, [adminLogged])
     return (<>
         <NoHeaderContentBody>
-
+            {/* <UserLogged /> */}
             <div className='login-css-container text-black'>
-                <div className="login-css-heading">Welcome Admin</div>
+                <div className="login-css-heading">Sign In</div>
                 <div action="" className="form">
                     <LoginAdmin />
+                    
                     
                 </div>
             </div>

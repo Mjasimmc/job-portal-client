@@ -74,10 +74,10 @@ const UserHeader = () => {
             setPageOptions
         }} />
             <HeaderBody>
-                <div className={`w-full h-full flex-1 flex items-center justify-between p-4  xl:px-[6rem] ${isDarkMode ? " text-white":""}`}>
+                <div className={`w-full h-full flex-1 flex items-center justify-between p-4  xl:px-[6rem]`}>
                     <div className="flex items-center h-full justify-normal gap-2">
 
-                            <button onClick={handleOpenAndCloseSideBar} className=" active:scale-50 duration-500  p-1 flex items-center aspect-square lg:hidden !text-black">
+                            <button onClick={handleOpenAndCloseSideBar} className=" active:scale-50 duration-100  p-1 flex items-center aspect-square lg:hidden ">
                                 {pageOptions ? <Close className=" !text-3xl"/> : <Menu className=" !text-3xl" />}
                             </button>
                       
@@ -90,7 +90,7 @@ const UserHeader = () => {
                             <HeaderOption
                                 onClick={() => navigate(option.to)}
                                 key={option.title}
-                                className={`  text-md duration-1000 font-[400]  ${location.pathname === option.to ? "  text-[#7c61d4] !font-[600]" : ""} ${!!userLogged || !option.view && " hidden"}`}
+                                className={`  text-md duration-100 font-[400]  ${location.pathname === option.to ? "  text-[#7c61d4] !font-[600]" : ""} ${!!userLogged || !option.view && " hidden"}`}
                             >
                                 {option.title}
                             </HeaderOption>
@@ -104,8 +104,6 @@ const UserHeader = () => {
                             <button onClick={handleThemeChange}>
                                 {isDarkMode &&  <DarkMode className="!text-3xl aspect-square !text-[#ffffff]" />}
                                 {!isDarkMode &&  <LightModeOutlined className="!text-3xl aspect-square !text-black" />}
-                                
-                               
                             </button>
                         </div>
                         <UserProfileImage />

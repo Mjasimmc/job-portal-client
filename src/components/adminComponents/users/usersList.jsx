@@ -26,13 +26,13 @@ const UsersList = () => {
         getAllUsers()
     }, [])
     return (<>
-        <div className="p-2 grid gap-4">
+        <div className="p-2 grid gap-4 ">
             <div className="w-full flex justify-end">
                 <MyButton className='p-2  m-2 rounded-md px-4' onClick={() => navigate('create')}>CREATE NEW USER</MyButton>
             </div>
             <div className="overflow-auto ">
                 {load && <Loading />}
-                {!load && <div className='w-full text-center grid min-w-[34rem] '>
+                {!load && <div className='w-full text-center grid min-w-[34rem]  animate-cards  '>
                     <table>
                         <thead>
 

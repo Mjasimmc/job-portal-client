@@ -7,6 +7,7 @@ import { UserMainContext } from '../../../store/contexts/userContext';
 import MyButton from '../../../ui/elements/myButton';
 import { useSelector } from 'react-redux';
 import Loading from '../../../ui/LoadingPages/Loading';
+import { validateJobApplied } from '../../../service/userApplyJob';
 
 const ViewJobPost = () => {
     const navigate = useNavigate();
@@ -20,7 +21,14 @@ const ViewJobPost = () => {
     const { jobId } = useParams();
     const [load, setLoad] = useState(false)
     const [jobData, setJobData] = useState(null);
+    const [jobApplied, setJobApplied] = useState(false)
+    const appliedJobValidate = async (_ID) => {
 
+        if (!user.isLogin) return null
+        const jobApplication = await validateJobApplied(_ID);
+        setJobApplied(!!jobApplication)
+
+    }
     const getJobData = async () => {
         try {
             setLoad(true)
@@ -29,6 +37,7 @@ const ViewJobPost = () => {
                 setPageNotFound(true);
             }
             setJobData(job);
+            appliedJobValidate(job._id)
         } catch (error) {
             console.log(error)
             if (!serverError) {
@@ -46,7 +55,13 @@ const ViewJobPost = () => {
         return dateConvert.toLocaleDateString();
     };
     const handleApplyJob = () => {
-        navigate("/job/apply/" + job._id)
+        navigate("/job/apply/" + jobData._id)
+    }
+    const handleManageJobs = () => {
+        if (!user.isLogin) {
+            return navigate('/auth/login')
+        }
+        navigate("/job/manage/" + jobData._id)
     }
 
     useEffect(() => {
@@ -57,7 +72,7 @@ const ViewJobPost = () => {
     return (
         <>
             {load && <Loading />}
-            {!load && <div className="w-full grid gap-[1rem] p-3  lg:px-[3rem] py-3 font-[350] ">
+            {!load && <div className="w-full grid gap-[1rem] p-3  lg:px-[3rem] py-3 font-[350] animate-cards">
                 <div className="w-full p-4 border shadow rounded-xl">
 
                     <div className='w-full p-2 flex'>
@@ -86,11 +101,14 @@ const ViewJobPost = () => {
                                         <p className='text-lg '>
                                             <strong> Vacancies : </strong> {jobData?.vacancy}
                                         </p>
+                                        <p className='text-lg '>
+                                            <strong> Applicants : </strong> {jobData?.applicants.length || 0}
+                                        </p>
                                     </div>
                                     <div className="w-full">
-                                        {jobData.employer.user !== user.id && <MyButton className="min-w-[8rem]" onClick={handleApplyJob}>Apply</MyButton>}
-                                        {jobData.employer.user === user.id && <MyButton className="min-w-[8rem]">Manage</MyButton>}
-
+                                        {!jobApplied && jobData?.employer?.user !== user.id && <MyButton className="min-w-[8rem]" onClick={handleApplyJob}>Apply</MyButton>}
+                                        {jobApplied && jobData?.employer?.user !== user.id && <MyButton className="min-w-[8rem]"  >Applied</MyButton>}
+                                        {jobData.employer.user === user.id && <MyButton onClick={handleManageJobs} className="min-w-[8rem]">Manage</MyButton>}
                                     </div>
                                     <div className="w-full p-4 ">
                                         <p className='text-lg '>

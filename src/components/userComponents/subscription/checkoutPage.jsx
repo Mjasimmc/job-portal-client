@@ -33,7 +33,7 @@ const CheckoutPage = ({ plan }) => {
                     try {
 
                         console.log(res.order.receipt)
-                        await savePaymentWithPaymentId({ ...response, ordeId: res.order.receipt });
+                        await savePaymentWithPaymentId({ ...response, orderId: res.order.receipt });
                         navigate('/subscribtion')
                     } catch (error) {
                         console.log(error)

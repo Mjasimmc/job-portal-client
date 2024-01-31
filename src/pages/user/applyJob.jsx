@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ApplyForm from '../../components/userComponents/applyJobs/applyForm';
 import { getEmployeeData } from '../../service/user';
 import Loading from '../../ui/LoadingPages/Loading';
-import WarnCreateEmployer from '../errorPages/warnCreateEmployer';
 
 const ApplyJob = () => {
     const [verfication, setVerification] = useState('pending')
@@ -27,7 +26,7 @@ const ApplyJob = () => {
     return (
         <>
             {verfication == 'success' && <ApplyForm />}
-            {verfication == 'failed' && <WarnCreateEmployer>Create Employee Profile <br /> for applying </WarnCreateEmployer>}
+            {verfication == 'failed' && <p className='p-5 md:px-16 text-xl'>Create Employee Profile for applying </p>}
             {verfication == 'pending' && <Loading />}
         </>
     );

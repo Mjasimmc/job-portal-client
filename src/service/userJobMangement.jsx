@@ -5,15 +5,16 @@ export const createJobPost = async (jobdata) => {
         const res = await ApiCall.post('user/create-employer-post', jobdata)
         return res.data
     } catch (error) {
-        
+
         throw error.response.data || "server error"
     }
 }
 
 
-export const getAllJobsFromServer = async (search) => {
+export const getAllJobsFromServer = async (search, logged) => {
     try {
-        const res = await ApiCall.post('user-un-auth/get-filtered-data', search)
+        const auth = logged ? 'user' : 'user-un-auth';
+        const res = await ApiCall.post(auth + '/get-filtered-data', search)
         return res.data
     } catch (error) {
         throw error
@@ -34,14 +35,14 @@ export const getJobDetailsWithId = async (jobId) => {
 export const getFilteredJobData = async (filterParams) => {
     try {
         const res = await ApiCall.post('user-un-auth/get-filtered-data', filterParams);
-        return res.data.jobs; 
+        return res.data.jobs;
     } catch (error) {
         throw error.response.data ? error.response.data : 'Server not connected';
     }
 };
 
 
-export const employerGetJobData = async ()=>{
+export const employerGetJobData = async () => {
     try {
         const res = await ApiCall.get('user/employer-get-jobs')
         return res.data
@@ -50,10 +51,10 @@ export const employerGetJobData = async ()=>{
     }
 }
 
-export const uploadResume = async (resume)=>{
+export const uploadResume = async (resume) => {
     try {
         const res = await ApiCall.put('user-un-auth/get-filtered-data', filterParams);
-        return res.data; 
+        return res.data;
     } catch (error) {
         throw error.response.data ? error.response.data : 'Server not connected';
     }

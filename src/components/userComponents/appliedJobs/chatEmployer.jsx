@@ -75,10 +75,9 @@ const ChatEmployer = ({ userId,job }) => {
             toast.error(error, toast_config);
         }
     };
+    
 
-    useEffect(() => {
-        scrollToBottom();
-    }, [applicantMessages]);
+  
 
     return (
         <>
@@ -91,11 +90,11 @@ const ChatEmployer = ({ userId,job }) => {
                             return (
                                 <Fragment key={`date-${currentDate}`}>
                                     <p className="text-center mb-2 text-gray-500">{currentDate}</p>
-                                    <MyChat mes={mes} chat={user.id === mes.sender} />
+                                    <MyChat mes={mes} chat={user.id === mes.sender} index={index} />
                                 </Fragment>
                             );
                         }
-                        return <MyChat key={mes._id} mes={mes} chat={user.id === mes.sender} />;
+                        return <MyChat key={mes._id} mes={mes} chat={user.id === mes.sender}  index={index} />;
                     })}
                 </div>
             </div>

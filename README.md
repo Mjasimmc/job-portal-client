@@ -1,5 +1,5 @@
 
-  <h1 style="background-color:black; color:white;">Running</h1>
+  <h1>Running</h1>
     <ul>
     <li>Add .env file 
      <ul>
@@ -15,7 +15,7 @@
   </ul> </li>
     <li>Run : npm install / npm i</li>
     <li>Run : npm run dev </li>
-    <li>Run : npm build</li>
+    <li>Run : npm run build</li>
     <li>Run : npm preview</li>
 
 

@@ -4,10 +4,12 @@
 
 body {
   caret-color: transparent;
+  background-color: #9f7575;
 }
 
 #root {
   color: #0e1239;
+  /* padding: 1rem; */
 }
 
 * {
@@ -218,3 +220,21 @@ body {
 .form__field:invalid {
   box-shadow: none;
 } */
+
+.animate-cards{
+  animation: card-showing .3s forwards ease-in-out;
+}
+
+@keyframes card-showing {
+  0% {
+    opacity: 0;
+    transform: scale(.75);
+
+  }
+ 
+  100% {
+    opacity: 1;
+    transform: scale(1);
+
+  }
+}

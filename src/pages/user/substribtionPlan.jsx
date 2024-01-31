@@ -25,9 +25,9 @@ const SubstribtionPlan = () => {
         getAllplans()
     }, [])
     return (<>
-        <div className='w-full max-md:px-2 md:px-10 font-[350]'>
-            <UserSubscriptionData />
-            <h1 className='p-5 text-lg'>Subscription Plan</h1>
+        <div className='w-full max-md:px-2 md:px-10 font-[350] pb-20'>
+            <UserSubscriptionData showPaymentHistory={true} />
+            <h1 className='font-[700] text-xl py-5'>Subscription Plan</h1>
             {load && <Loading/>}
             {!load && <div className="w-full grid px-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 {plans.map((plan) => (<Fragment key={plan._id}>

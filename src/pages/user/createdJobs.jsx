@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MyJobList from '../../components/userComponents/jobs/myJobList';
 import { getEmployerDatab } from '../../service/user';
 import SearchComp from '../../components/userComponents/jobs/searchComp';
+import UserSubscriptionData from '../../components/userComponents/subscription/userSubscriptionData';
 
 const CreatedJobs = () => {
 
@@ -15,7 +16,7 @@ const CreatedJobs = () => {
                 setVerification('failed')
             }
         } catch (error) {
-            
+
         }
     }
     useEffect(() => {
@@ -23,8 +24,7 @@ const CreatedJobs = () => {
     }, [])
     return (
         <div className='w-full'>
-            {/* <SearchComp /> */}
-            <h1 className='p-6 text-3xl'>Manage Jobs</h1>
+            <h1 className='p-6 pt-2  text-3xl'>Manage Jobs</h1>
             <MyJobList />
         </div>
     );

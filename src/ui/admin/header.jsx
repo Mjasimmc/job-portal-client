@@ -27,7 +27,7 @@ const HeaderAdmin = () => {
     }
     return (
         <HeaderBody>
-            <div className={`w-full h-full flex-1 flex items-center justify-between p-4  xl:px-16  shadows ${isDarkMode ? " text-white" : ""}`}>
+            <div className={`w-full h-full flex-1 flex items-center justify-between p-4  xl:px-16  shadows`}>
                 <div className="flex items-center h-full justify-normal gap-2">
 
                     <button onClick={() => setSideBarOpen(!sideBarOpen)} className=" active:scale-110 p-1 flex items-center aspect-square lg:hidden !text-black">
@@ -44,8 +44,6 @@ const HeaderAdmin = () => {
                         <button onClick={handleThemeChange}>
                             {isDarkMode && <DarkMode className="!text-3xl aspect-square !text-[#ffffff]" />}
                             {!isDarkMode && <LightModeOutlined className="!text-3xl aspect-square !text-black" />}
-
-
                         </button>
                     </div>
                     <AdminProfile />

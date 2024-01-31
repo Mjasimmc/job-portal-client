@@ -7,6 +7,7 @@ import AdminBody from '../../ui/admin/body';
 import AdminSidebar from '../../ui/admin/sidebar';
 import { Button } from '@mui/material';
 import StatusBanner from '../../components/adminComponents/home/statusBanner';
+import ChartData from '../../components/adminComponents/home/chartData';
 
 const HomePageAdmin = () => {
     const {
@@ -16,6 +17,9 @@ const HomePageAdmin = () => {
     return (<>
         <div className="grid min-h-[20rem] p-5">
            <StatusBanner/>
+           <div className="w-full">
+            <ChartData />
+           </div>
         </div>
     </>
     );

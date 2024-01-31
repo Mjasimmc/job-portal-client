@@ -61,7 +61,7 @@ const ListJobs = () => {
             </div>
         </div>
         {load && <Loading />}
-       {!load && <div className='w-full md:px-10 font-[400] grid sm:grid-cols-2 2xl:grid-cols-3 duration-1000 gap-6 p-2'>
+       {!load && <div className='w-full md:px-10 font-[400] grid sm:grid-cols-2 2xl:grid-cols-3 duration-1000 gap-6 p-2 animate-cards  '>
             {jobs.map((job) => (
                 <JobCardsAdmin key={job._id} job={job} />
             ))}

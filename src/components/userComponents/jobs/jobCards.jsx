@@ -1,30 +1,52 @@
-import { Close, KeyboardOptionKey, Link, MoreVert, Report, TurnedIn } from '@mui/icons-material';
+import { Close, KeyboardOptionKey, Link, MoreVert, Report, TurnedIn, TurnedInNot } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import MyButton from '../../../ui/elements/myButton';
 import { validateJobApplied } from '../../../service/userApplyJob';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../../config/constants';
+import { removeFromSavedList, saveToSavedList } from '../../../service/user/job';
 
 
-const JobCards = ({ job }) => {
+const JobCards = ({ job, index }) => {
     const user = useSelector(state => state.user);
 
     const { isDarkMode } = useSelector(state => state.theme)
     const navigate = useNavigate();
     const [optionDrop, setOptionDrop] = useState(false)
     const [jobApplied, setJobApplied] = useState(false)
+    const [postSaved, setPostSaved] = useState(false)
+    const [show, setShow] = useState(false)
 
-    const truncateDescription = (description, maxLength) => {
-        const truncatedText = description.substring(0, maxLength);
-        const nonEmptyLines = truncatedText.split('\n').filter(line => line.trim() !== '');
-        return nonEmptyLines.join('\n');
-    };
+    const handleShowCard = () => {
+        setTimeout(() => setShow(true), index * 150)
+    }
+    const postSavedCheck = () => {
+        if (job.saved) {
+            job.saved.map((id) => {
+                if (id == user.id) {
+                    setPostSaved(true)
+                }
+            })
+        }
+    }
+
+    const truncateDescription = (description, maxLength) => description.substring(0, maxLength).split('\n').filter(line => line.trim() !== '').join('\n');
 
     const appliedJobValidate = async () => {
+
+      try {
+        handleShowCard()
         if (!user.isLogin) return null
+        postSavedCheck()
         const jobApplication = await validateJobApplied(job._id);
         setJobApplied(!!jobApplication)
+       
+      } catch (error) {
+        
+      } 
     }
 
     const handleApplyJob = () => {
@@ -39,12 +61,38 @@ const JobCards = ({ job }) => {
         }
         navigate("/job/manage/" + job._id)
     }
+    const handleSaveJobList = async () => {
+        try {
+            const res = await saveToSavedList(job._id)
+            // console.log(res)
+            setPostSaved(true)
+            toast.success("sucessfully saved job", toast_config)
+        } catch (error) {
+            toast.error("error occured on saving post", toast_config)
+        }
+    }
+    const handleRemoveSaveJobList = async () => {
+        try {
+            const res = await removeFromSavedList(job._id)
+            // console.log(res)
+            setPostSaved(false)
+            toast.success("sucessfully removed from saved job", toast_config)
+        } catch (error) {
+            toast.error("error occured on saving post", toast_config)
+        }
+    }
+    const ViewDate = (date) => {
+        const dateConvert = new Date(date);
+        const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+        return dateConvert.toLocaleDateString() +" " + dateConvert.toLocaleTimeString(undefined, options);
+    };
+
     useEffect(() => {
         appliedJobValidate()
     }, [])
 
     return (<>
-        <div className={`flex flex-col justify-between duration-300 job-card hover:scale-[1.005] bg-white/5   active:scale-[.9999] bg-gradient-to-br from-[#00000000] rounded-lg p-2 px-4 hover:to-gray-500/10  ${isDarkMode ? 'border border-[#ff35ab]' : ''}`}>
+        {show && <div className={`flex flex-col justify-between duration-300 job-card hover:scale-[1.005] bg-white/5   active:scale-[.9999] bg-gradient-to-br from-[#00000000] rounded-lg p-2 px-4 hover:to-gray-500/10  animate-cards ${isDarkMode ? 'border border-[#ff35ab]' : ''}`}>
             <div className="flex justify-between items-center">
                 <div className="flex-1"><h1 className={`text-lg uppercase p-1 cursor-pointer ${isDarkMode ? 'text-[#3cff52]' : ''}`} onClick={() => navigate('/job/view/' + job._id)}><strong>{job.role}  </strong> </h1></div>
                 <div className="relative ">
@@ -96,11 +144,15 @@ const JobCards = ({ job }) => {
                 {!jobApplied && job.employer.user !== user.id && <MyButton className="min-w-[8rem]" onClick={handleApplyJob}>Apply</MyButton>}
                 {jobApplied && job.employer.user !== user.id && <MyButton className="min-w-[8rem]"  >Applied</MyButton>}
                 {job.employer.user === user.id && <MyButton onClick={handleManageJobs} className="min-w-[8rem]">Manage</MyButton>}
-                <div className="rounded-md ">
+                {postSaved && <div className="rounded-md " onClick={handleRemoveSaveJobList}>
                     <TurnedIn />
-                </div>
+                </div>}
+                {!postSaved && <div className="rounded-md " onClick={handleSaveJobList}>
+                    <TurnedInNot />
+                </div>}
             </div>
-        </div>
+            <p className='text-[.6rem] text-end'>posted on {ViewDate(job.createdAt)}</p>
+        </div>}
     </>
     );
 };

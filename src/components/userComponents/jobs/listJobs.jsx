@@ -5,8 +5,10 @@ import { useLocation } from 'react-router-dom';
 import MyButton from '../../../ui/elements/myButton';
 import Loading from '../../../ui/LoadingPages/Loading';
 import { ArrowLeftOutlined, ArrowRightAltOutlined, ArrowRightOutlined } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 const ListJobs = () => {
+    const userLogin = useSelector(state => state.user.isLogin)
     const location = useLocation();
     const [jobs, setJobs] = useState([]);
     const [curPage, setCurPage] = useState(1);
@@ -30,7 +32,8 @@ const ListJobs = () => {
         try {
             const search = getSearchQuery();
             setLoad(true)
-            const filteredJobs = await getAllJobsFromServer({ ...search });
+            const filteredJobs = await getAllJobsFromServer({ ...search },userLogin);
+            console.log(filteredJobs)
             setLoad(false)
             setJobs(filteredJobs);
         } catch (error) {
@@ -50,7 +53,6 @@ const ListJobs = () => {
     }, [location, curPage]);
     return (
         <div className='flex-1 flex w-full flex-col justify-between '>
-            {load && <Loading />}
             <div className="w-full h-[4rem] flex justify-end px-10 items-center">
                 <div className="flex gap-2">
                     {curPage > 1 && <MyButton className=" !text-[.7rem] !font-[200]" onClick={() => handlePageChange(curPage - 1)} >
@@ -65,9 +67,10 @@ const ListJobs = () => {
                     </MyButton>}
                 </div>
             </div>
+            {load && <Loading />}
             {!load && <div className='w-full md:px-10 font-[400] grid md:grid-cols-2 xl:grid-cols-3 gap-5 p-2'>
-                {jobs.map((job) => (
-                    <JobCards key={job._id} job={job} />
+                {jobs.map((job ,index) => (
+                    <JobCards index={index} key={job._id} job={job} />
                 ))}
             </div>}
             <div className="w-full h-[4rem] flex justify-center items-center">
