@@ -13,7 +13,16 @@ body {
 }
 
 * {
-  font-family: cursive, sans-serif, Arial, Helvetica, sans-serif;
+  font-family: Tahoma, Geneva, sans-serif;
+  
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
 }
 
 .shadows {
@@ -182,7 +191,7 @@ body {
 
 .form__label {
 
-  
+
   position: absolute;
   top: 0;
   left: 1rem;
@@ -202,7 +211,7 @@ body {
 }
 
 .form__field~.form__label {
-  color:inherit
+  color: inherit
 }
 
 .form__field:focus~.form__label {
@@ -221,7 +230,7 @@ body {
   box-shadow: none;
 } */
 
-.animate-cards{
+.animate-cards {
   animation: card-showing .3s forwards ease-in-out;
 }
 
@@ -231,7 +240,7 @@ body {
     transform: scale(.75);
 
   }
- 
+
   100% {
     opacity: 1;
     transform: scale(1);
