@@ -19,7 +19,7 @@ const JobPostForm = () => {
             const { plan } = await userGetSelfPlanDetails();
             console.log(plan)
             const expired = plan ? new Date(plan.expiryDate) < new Date() : false
-            if (expired) {
+            if (expired || !plan) {
                 return setVerification('plan-not-valid')
             }
             if (employer._id) {
