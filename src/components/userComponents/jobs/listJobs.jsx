@@ -50,7 +50,7 @@ const ListJobs = () => {
 
     useEffect(() => {
         getAllJobs();
-    }, [location, curPage]);
+    }, [location, curPage , userLogin]);
     return (
         <div className='flex-1 flex w-full flex-col justify-between '>
             <div className="w-full h-[4rem] flex justify-end px-10 items-center">
