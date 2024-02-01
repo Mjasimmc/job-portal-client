@@ -34,33 +34,25 @@ const StatusBanner = () => {
     }
     return (
         <div className="border grid sm:grid-cols-2 lg:grid-cols-4 rounded-md animate-cards  ">
-            <div className="border  text-center grid gap-3">
+            <div className="border p-4 text-center grid gap-3">
                 <p className='text-md font-[350]'>No Of Users</p>
                 <p className='text-center text-2xl'>{count?.users} </p>
-                <div className="">
-                    <MyButton>View</MyButton>
-                </div>
+                
             </div>
             <div className="border p-4  text-center grid gap-3">
                 <p className='text-md font-[350]'>No Of Job Posts</p>
                 <p className='text-center text-2xl'>{count?.jobs}</p>
-                <div className="">
-                    <MyButton>View</MyButton>
-                </div>
+                
             </div>
             <div className="border p-4  text-center grid gap-3 ">
                 <p className='text-md font-[350]'>Active Subscription Users</p>
                 <p className='text-center text-2xl'>{count?.userSubscribed}</p>
-                <div className="">
-                    <MyButton>View</MyButton>
-                </div>
+                
             </div>
             <div className="border p-4  text-center grid gap-3">
                 <p className='text-md text-center font-[350]'>Last 30 days Purchase</p>
                 <p className='text-center text-2xl'><span className='text-[1rem]' >RS:</span> {count?.lastMonthTotalPayment}</p>
-                <div className="">
-                    <MyButton>View</MyButton>
-                </div>
+                
             </div>
         </div>
     );

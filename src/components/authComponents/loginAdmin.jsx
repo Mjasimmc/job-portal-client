@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { validate } from '../../config/validations';
 import { adminLoginService } from '../../service/authServive';
 import { setAdminLogin } from '../../store/slices/adminSlice';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../config/constants';
 
 const LoginAdmin = () => {
     const dispatch = useDispatch()
@@ -31,7 +33,8 @@ const LoginAdmin = () => {
             const res = await adminLoginService(email, password)
             dispatch(setAdminLogin(res))
         } catch (error) {
-
+            toast.error(error,toast_config)
+            console.log(error)
         }
     }
     return (
