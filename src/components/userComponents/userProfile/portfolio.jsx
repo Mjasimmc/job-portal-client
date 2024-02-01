@@ -13,11 +13,7 @@ const UserProfilePortfolio = () => {
         return !isDarkMode ? 'bg-black/25' : 'bg-white/25'
     }
     return (<>
-        <div className="max-md:w-full md:w-8/12 shadows flex gap-2 flex-wrap justify-center p-2">
-            <Button className='!bg-[#aaa9a9] !text-black'>Applied Jobs</Button>
-            <Button className='!bg-[#aaa9a9] !text-black'>Create Job</Button>
-            <Button className='!bg-[#aaa9a9] !text-black'>Subscription</Button>
-        </div>
+       
         <div className="max-md:w-full md:w-8/12 shadows grid grid-cols-2 ">
             <button
                  className={`p-2 rounded-lg duration-500 ${employeeProfile ? backgrouColor() :''}`}
