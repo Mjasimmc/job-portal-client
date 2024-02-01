@@ -4,19 +4,22 @@
 
 body {
   caret-color: transparent;
-  background-color: #9f7575;
+  background-color: black;
+ 
 }
 
 #root {
-  color: #0e1239;
+  /* color: #0e1239; */
   /* padding: 1rem; */
+  padding-bottom: -10px !important;
 }
 
 * {
   font-family: Tahoma, Geneva, sans-serif;
-  
   letter-spacing: 1px;
   word-spacing: 2px;
+  /* margin: 0; */
+  /* box-sizing: ; */
 }
 
 .shadows {
