@@ -16,7 +16,8 @@ const ListJobs = () => {
 
     const getSearchQuery = () => {
         const queryParams = new URLSearchParams(location.search);
-        console.log(queryParams)
+      
+
         return {
             role: queryParams.get('jobs') || '',
             company: queryParams.get('company') || '',
@@ -33,15 +34,12 @@ const ListJobs = () => {
             const search = getSearchQuery();
             setLoad(true)
             const filteredJobs = await getAllJobsFromServer({ ...search },userLogin);
-            console.log(filteredJobs)
             setLoad(false)
             setJobs(filteredJobs);
         } catch (error) {
             console.log(error);
             setLoad(false)
-        } finally {
-            setLoad(false)
-        }
+        } 
     };
 
     const handlePageChange = (newPage) => {

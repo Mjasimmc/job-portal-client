@@ -15,14 +15,14 @@ const ViewApplicants = () => {
     const getAllApplicants = async () => {
         try {
             const { plan } = await userGetSelfPlanDetails();
-            console.log(plan)
+         
             const expired = plan ? new Date(plan.expiryDate) < new Date() : false
             if (expired || !plan) {
                 setValidPlan(false)
                 return console.log('plan-not-valid', expired)
             }
             const res = await getAllApplicantsOfJobWithJobId(jobId)
-            console.log(res)
+         
             setApplicants(res)
         } catch (error) {
             toast.error('error occured on fetching data', toast_config)

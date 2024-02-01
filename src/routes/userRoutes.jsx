@@ -8,6 +8,7 @@ import Loading from '../ui/LoadingPages/Loading';
 import UserNotLogged from '../config/userNotLogged';
 import FullBody from '../ui/body/full-body';
 import SuccessPageJobPost from '../components/userComponents/createJob/successPage';
+import UserFooter from '../ui/user/userFooter';
 
 
 
@@ -73,7 +74,9 @@ const UserRoutes = () => {
                 <Route path={PATHS.HOME} element={<>
                     <UserHeader />
                     <FullBody>
-                        <ContentBody><Outlet /></ContentBody>
+                        <ContentBody><Outlet />
+                        </ContentBody>
+                    <UserFooter/>
                     </FullBody>
                 </>} >
                     <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><Home /></Suspense>} />
