@@ -78,6 +78,7 @@ const UserRoutes = () => {
                 </>} >
                     <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><Home /></Suspense>} />
                     <Route path={PATHS.ABOUT} element={<Suspense fallback={<Loading />}><AboutPage /></Suspense>} />
+                    <Route path={`job/view/:jobId`} element={<Suspense fallback={<Loading />}><ViewJobPost /></Suspense>} />
                     <Route path={PATHS.HOME} element={<> <UserNotLogged /><Outlet />  </>} >
 
                         <Route path={PATHS.NOTIFICATION} element={<Suspense fallback={<Loading />}><ListNotification /></Suspense>} />
