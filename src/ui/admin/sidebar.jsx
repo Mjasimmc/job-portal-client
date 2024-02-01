@@ -41,18 +41,22 @@ const AdminSidebar = () => {
         sideBarOpen,
         setSideBarOpen
     } = useContext(AdminContext)
-    const isDarkMode = useSelector(state => state.theme.isDarkMode)
+    const {primaryColor} = useSelector(state => state.theme)
+
     const backgrouColor = () => {
-        return isDarkMode ? 'bg-[#2d2d2d]' : 'bg-white'
+        return primaryColor
     }
     return (<>
 
-        <section className={`fixed left-0 top-0 z-[90] duration-500 !w-[12rem] flex gap-1  pt-0 sidebar-height  flex-col shadow-lg ${sideBarOpen ? "max-lg:-translate-x-[0] " : 'max-lg:-translate-x-[100%]'}`}
+        <section className={`fixed left-0 top-0 z-[90] duration-500 !w-[12rem] flex gap-1 shadow   shadow-gray-500/50 pt-0 sidebar-height  flex-col ${sideBarOpen ? "max-lg:-translate-x-[0] " : 'max-lg:-translate-x-[100%]'}`}
             onMouseLeave={() => setSideBarOpen(false)}>
-            <div className={`p-1 uppercase flex-1 shadow rounded-md overflow-auto ${backgrouColor()}`}>
-                {adminSidebarOptions.map((option, i) => (
-                    <SideBarOption key={option.keyId} option={option} index={i} setPageOptions={setSideBarOpen} />
-                ))}
+             <div className={`flex-1 max-h-full overflow-y-auto  duration-700  job-card    ${backgrouColor()}`} onMouseLeave={() => setPageOptions(false)}>
+                <div className="w-full flex flex-col gap-1 p-1  " >
+
+                    {adminSidebarOptions.map((option, i) => (
+                        <SideBarOption key={option.keyId} option={option} index={i} setPageOptions={setSideBarOpen} />
+                    ))}
+                </div>
             </div>
         </section>
 

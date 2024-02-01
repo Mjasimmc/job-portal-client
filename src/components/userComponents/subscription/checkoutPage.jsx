@@ -31,7 +31,6 @@ const CheckoutPage = ({ plan }) => {
                 order_id: res.order.id,
                 handler: async (response) => {
                     try {
-
                         console.log(res.order.receipt)
                         await savePaymentWithPaymentId({ ...response, orderId: res.order.receipt });
                         navigate('/subscribtion')
