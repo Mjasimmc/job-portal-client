@@ -5,6 +5,8 @@ import MyButton from '../../../ui/elements/myButton';
 import { BaseURL } from '../../../config_Api';
 import AplicantListCard from './aplicantListCard';
 import { userGetSelfPlanDetails } from '../../../service/subscription';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../../config/constants';
 
 const ViewApplicants = () => {
 
@@ -19,7 +21,7 @@ const ViewApplicants = () => {
             const expired = plan ? new Date(plan.expiryDate) < new Date() : false
             if (expired || !plan) {
                 setValidPlan(false)
-                return console.log('plan-not-valid', expired)
+                return toast.error('no valid plan found',toast_config)
             }
             const res = await getAllApplicantsOfJobWithJobId(jobId)
          

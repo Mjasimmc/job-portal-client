@@ -3,6 +3,8 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { getEmployerDatab } from '../../service/user';
 import Loading from '../../ui/LoadingPages/Loading';
 import { userGetSelfPlanDetails } from '../../service/subscription';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../config/constants';
 
 
 
@@ -19,6 +21,7 @@ const JobPostForm = () => {
             const { plan } = await userGetSelfPlanDetails();
             const expired = plan ? new Date(plan.expiryDate) < new Date() : false
             if (expired || !plan) {
+                toast.error('no valid plan found',toast_config)
                 return setVerification('plan-not-valid')
             }
             if (employer._id) {
