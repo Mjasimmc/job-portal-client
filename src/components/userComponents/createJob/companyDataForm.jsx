@@ -10,14 +10,16 @@ import { toast_config } from '../../../config/constants';
 import { useSelector } from 'react-redux';
 import MyButton from '../../../ui/elements/myButton';
 import InputTextField from '../../../ui/elements/InputTextField';
+import Loading from '../../../ui/LoadingPages/Loading';
 
 const CompanyDataForm = ({ setFormNumber }) => {
-    const { isDarkMode } = useSelector(state => state.theme)
+    const [load,setLoad] = useState(false)
     const { jobForm, handleSetJobForm } = useContext(JobCreateContext);
     const getEmployerInputs = async () => {
         try {
-
+            setLoad(true)
             const employer = await getEmployerDatab()
+            setLoad(false)
             setCompanyData({
                 companyName: jobForm.companyName || employer.company_name || '',
                 salary: jobForm.salary || '',
@@ -27,7 +29,8 @@ const CompanyDataForm = ({ setFormNumber }) => {
             });
         } catch (error) {
             toast.error("error occured", toast_config)
-        }
+            setLoad(false)
+        } 
     }
 
     const [companyData, setCompanyData] = useState({
@@ -83,8 +86,9 @@ const CompanyDataForm = ({ setFormNumber }) => {
         }
     };
 
-    return (
-        <div className={`flex flex-col gap-4 border rounded-lg ${isDarkMode ? "bg-[#ffffff62]" : ''}`}>
+    return (<>
+    {load && <Loading />}
+       {!load &&  <div className={`flex flex-col gap-4 border rounded-lg  `}>
             <h1 className='text-center text-2xl font-semibold underline underline-offset-1'>Company Information</h1>
 
             <div className=" grid md:grid-cols-2 gap-4 p-2">
@@ -156,8 +160,9 @@ const CompanyDataForm = ({ setFormNumber }) => {
                 <MyButton className='!p-3 !px-5 !text-xl' onClick={() => setFormNumber(0)}>Prev</MyButton>
                 <MyButton className='!p-3 !px-5 !text-xl'   onClick={handleSubmit}>Next</MyButton>
             </div>
-        </div>
-    );
+        </div>}
+    
+    </>);
 }
 
 export default CompanyDataForm;
