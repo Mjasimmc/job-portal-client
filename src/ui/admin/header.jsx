@@ -30,7 +30,7 @@ const HeaderAdmin = () => {
             <div className={`w-full h-full flex-1 flex items-center justify-between p-4  xl:px-16  shadows`}>
                 <div className="flex items-center h-full justify-normal gap-2">
 
-                    <button onClick={() => setSideBarOpen(!sideBarOpen)} className=" active:scale-110 p-1 flex items-center aspect-square lg:hidden !text-black">
+                    <button onClick={() => setSideBarOpen(!sideBarOpen)} className=" active:scale-110 p-1 flex items-center aspect-square lg:hidden">
                         {sideBarOpen ? <Close className="" /> : <Menu />}
                     </button>
                     <Logo />
