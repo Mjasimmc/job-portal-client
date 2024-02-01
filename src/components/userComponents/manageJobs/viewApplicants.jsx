@@ -43,6 +43,7 @@ const ViewApplicants = () => {
                 <MyButton>Subscribe</MyButton>
             </div>}
             {notValidPlan && applicants.length === 0 && <p className='text-3xl'>No Applicants </p>}
+            {notValidPlan && applicants.length > 0 && <p className='text-3xl'>Applicant List </p>}
             {notValidPlan && applicants.map((applicant, i) => (<Fragment key={applicant._id}>
                 {<AplicantListCard applicant={applicant} i={i} />}
             </Fragment>
