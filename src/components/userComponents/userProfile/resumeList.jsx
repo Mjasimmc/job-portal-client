@@ -15,10 +15,13 @@ const ResumeList = () => {
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
-            setResume(selectedFile);
+            if (selectedFile.type === 'application/pdf') {
+                setResume(selectedFile);
+            } else {
+                toast.error('Please choose a PDF file.', toast_config);
+            }
         }
     };
-
     const handleRemoveResume = () => {
         setResume(null);
     };
