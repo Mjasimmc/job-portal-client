@@ -48,7 +48,8 @@ export const headerOption = [
 const UserHeader = () => {
 
     const dispatch = useDispatch()
-    const {isDarkMode} = useSelector(state => state.theme)
+    // const {isDarkMode} = useSelector(state => state.theme)
+    const theme = useSelector(state => state.theme)
     const userLogged = useSelector(state => state.user.isLogin);
     const {
         pageOptions,
@@ -74,7 +75,7 @@ const UserHeader = () => {
             setPageOptions
         }} />
             <HeaderBody>
-                <div className={`w-full h-full flex-1 flex items-center justify-between p-4  xl:px-[6rem]`}>
+                <div className={`w-full h-full flex-1 flex items-center justify-between p-4   `}>
                     <div className="flex items-center h-full justify-normal gap-2">
 
                             <button onClick={handleOpenAndCloseSideBar} className=" active:scale-50 duration-100  p-1 flex items-center aspect-square lg:hidden ">
@@ -102,8 +103,8 @@ const UserHeader = () => {
                        
                         <div>
                             <button onClick={handleThemeChange}>
-                                {isDarkMode &&  <DarkMode className="!text-3xl aspect-square !text-[#ffffff]" />}
-                                {!isDarkMode &&  <LightModeOutlined className="!text-3xl aspect-square !text-black" />}
+                                {theme.isDarkMode &&  <DarkMode className="!text-3xl aspect-square !text-[#ffffff]" />}
+                                {!theme.isDarkMode &&  <LightModeOutlined className="!text-3xl aspect-square !text-black" />}
                             </button>
                         </div>
                         <UserProfileImage />

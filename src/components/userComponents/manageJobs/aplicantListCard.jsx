@@ -6,7 +6,7 @@ import { BaseURL } from '../../../config_Api';
 const AplicantListCard = ({ applicant, i }) => {
     const navigate = useNavigate()
     const handleViewApplicant = () => {
-        navigate('/job/applicant/' + applicant._id)
+        navigate('/job/applicant/' + applicant.applicantionId._id)
     }
     return (
         <>

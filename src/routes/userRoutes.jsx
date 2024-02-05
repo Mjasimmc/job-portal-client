@@ -76,13 +76,13 @@ const UserRoutes = () => {
                     <FullBody>
                         <ContentBody><Outlet />
                         </ContentBody>
-                    <UserFooter/>
+                        <UserFooter />
                     </FullBody>
                 </>} >
                     <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><Home /></Suspense>} />
                     <Route path={PATHS.ABOUT} element={<Suspense fallback={<Loading />}><AboutPage /></Suspense>} />
                     <Route path={`job/view/:jobId`} element={<Suspense fallback={<Loading />}><ViewJobPost /></Suspense>} />
-                    <Route path={PATHS.HOME} element={<> <UserNotLogged /><Outlet />  </>} >
+                    <Route path={PATHS.HOME} element={<> <UserNotLogged ><Outlet /></UserNotLogged >  </>} >
 
                         <Route path={PATHS.NOTIFICATION} element={<Suspense fallback={<Loading />}><ListNotification /></Suspense>} />
                         <Route path={PATHS.PROFILE} element={<><Outlet /></>} >

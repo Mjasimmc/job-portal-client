@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { useNavigate } from 'react-router-dom';
 import { addExperience } from '../../../service/user';
+import InputTextField from '../../../ui/elements/InputTextField';
+import MyButton from '../../../ui/elements/myButton';
 
 const ExperienceForm = () => {
     const navigate = useNavigate();
@@ -76,7 +78,7 @@ const ExperienceForm = () => {
 
                 <div className='grid md:grid-cols-2 gap-4 p-2'>
                     <div className='grid'>
-                        <TextField
+                        <InputTextField
                             className='!caret-black'
                             label='Position'
                             value={experienceData.position}
@@ -89,7 +91,7 @@ const ExperienceForm = () => {
 
                 <div className='grid md:grid-cols-2 gap-4 p-2'>
                     <div className='grid'>
-                        <TextField
+                        <InputTextField
                             className='!caret-black'
                             label='Company'
                             value={experienceData.company}
@@ -104,7 +106,7 @@ const ExperienceForm = () => {
                     Employment Start Date
                     <CalendarIcon />
                     <DatePicker
-                        className='border rounded-lg caret-black p-3 flex items-center'
+                        className='border rounded-lg text-black  caret-black p-3 flex items-center'
                         showIcon
                         selected={experienceData.employmentStartDate || new Date()}
                         dateFormat='dd/MM/yyyy'
@@ -119,7 +121,7 @@ const ExperienceForm = () => {
                     Employment End Date
                     <CalendarIcon />
                     <DatePicker
-                        className='border rounded-lg caret-black p-3 flex items-center'
+                        className='border rounded-lg  text-black caret-black p-3 flex items-center'
                         showIcon
                         selected={experienceData.employmentEndDate || new Date()}
                         dateFormat='dd/MM/yyyy'
@@ -130,9 +132,12 @@ const ExperienceForm = () => {
                     )}
                 </div>
 
-                <Button className='!shadow !m-2 !bg-gray-700 !text-white' onClick={handleSubmit}>
-                    Save
-                </Button>
+              
+                <div className="flex justify-center">
+                    <MyButton className='px-4 text-lg m-4' onClick={handleSubmit}>
+                        Save
+                    </MyButton>
+                </div>
             </div>
         </div>
     );

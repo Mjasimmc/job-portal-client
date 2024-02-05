@@ -16,11 +16,11 @@ const UserData = () => {
                             <p>+91-{user.phone.number} {user.phone.validated? <Done className='!text-[green]' />: <DoNotDisturb  className='!text-[red]' /> }</p>
                             <p>profession mention</p>
                         </div>
-                        <div className="h-full md:min-h-[6rem]">
+                        {/* <div className="h-full md:min-h-[6rem]">
                             <Button>
                                 <Edit />
                             </Button>
-                        </div>
+                        </div> */}
                     </div>
                     <img src={profileImage} className='w-[8rem] aspect-square rounded-full' alt="" />
                 </div>

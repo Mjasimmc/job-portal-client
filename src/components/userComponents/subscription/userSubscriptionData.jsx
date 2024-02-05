@@ -59,7 +59,7 @@ const UserSubscriptionData = ({showPaymentHistory}) => {
             <h1 className='font-[700] text-xl'>Payment History</h1>
             <div className="w-full flex p-4 pt-2 overflow-x-auto overflow-y-hidden gap-4">
 
-                {paymentHistory.map((payment) => (<div key={payment._id} className="h-full aspect -auto bg-red-200 p-10">
+                {paymentHistory.map((payment) => (<div key={payment._id} className="h-full border border-blue-700 px-5 grid gap-3    py-10">
 
                     <h1 className='text-center text-2xl font-[850] uppercase list-inside p-4'>{payment?.plan.name}</h1>
                     <h1 className='text-center text-xl font-[400] uppercase list-inside '>Post Limit : {payment?.plan.jobPostLimit}</h1>

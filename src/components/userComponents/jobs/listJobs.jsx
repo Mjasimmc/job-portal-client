@@ -16,8 +16,6 @@ const ListJobs = () => {
 
     const getSearchQuery = () => {
         const queryParams = new URLSearchParams(location.search);
-      
-
         return {
             role: queryParams.get('jobs') || '',
             company: queryParams.get('company') || '',

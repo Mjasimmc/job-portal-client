@@ -10,6 +10,8 @@ import { toast_config } from '../../config/constants';
 import { createOtpToValidateEmail, userLogin } from '../../service/authServive';
 import { useDispatch } from 'react-redux';
 import { socket } from '../../socketIo';
+import InputTextField from '../../ui/elements/InputTextField';
+import MyButton from '../../ui/elements/myButton';
 
 const LoginUser = () => {
     const navigate = useNavigate()
@@ -83,7 +85,8 @@ const LoginUser = () => {
                             inputPlaceholder: "Enter your email address"
                         });
                         const res = await createOtpToValidateEmail(email)
-                        navigate('/auth/otp/' + res)
+                        console.log(res)
+                        navigate('/auth/otp/' + res.otp_id)
                         if (email) {
                             Swal.fire(`Entered email: ${email}`);
                         }
@@ -99,6 +102,7 @@ const LoginUser = () => {
                 });
             } else {
                 dispatch(setUserLogin(res.mes))
+                navigate(-1)
                 socket.connect()
                 socket.emit('createRoom', res.mes._id)
                 toast.success("submited", toast_config)
@@ -110,20 +114,20 @@ const LoginUser = () => {
     return (
         <>
 
-            <input
+            <InputTextField
                 required=""
                 value={userData.userId.data}
                 onChange={(e) => handleDataInput(e.target.value, 'userId')} 
-                className="login-css-form-input" 
-                type="email" name="email" id="email" placeholder="E-mail" />
+                // className="login-css-form-input" 
+                type="email" name="email" id="email" label="E-mail" />
             {!userData.userId.valid && <p className='text-xs text-[red]'> username/phone/email required</p>}
-            <input
+            <InputTextField
                 required=""
-                className="login-css-form-input"
+                // className="login-css-form-input"
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Password"
+                label="Password"
                 value={userData.password.data}
                 onChange={(e) => handleDataInput(e.target.value, 'password')}
             />
@@ -131,9 +135,9 @@ const LoginUser = () => {
             {!userData.password.valid && <p className='text-xs text-[red]'> Minimum 8 charected</p>}
             <span className="login-css-fgtpass"><Link to={'/auth/forgotpassword'} className='login-css-form-input-a'>Forgot Password ?</Link></span>
 
-            <button className="login-css-button" type="submit" onClick={() => submitLogin()} >
+            <MyButton className="login-css-button border " type="submit" onClick={() => submitLogin()} >
                 Sign In
-            </button>
+            </MyButton>
 
         </>
     );

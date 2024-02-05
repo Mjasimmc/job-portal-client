@@ -14,11 +14,11 @@ const UserRegisterPage = () => {
     const navigate = useNavigate()
     return (<>
         <NoHeaderContentBody>
-            <div className='login-css-container w-full text-black '>
+            <div className='login-css-container w-full max-w-[24rem] border '>
                 <div className="login-css-heading">Sign Up</div>
                 <div action="" className="form">
                     <RegisterUser />
-                    <span class="agreement" onClick={() => navigate('/auth/login')}>Log in to your account</span>
+                    <span className="agreement" onClick={() => navigate('/auth/login')}>Log in to your account</span>
                 </div>
             </div>
         </NoHeaderContentBody >

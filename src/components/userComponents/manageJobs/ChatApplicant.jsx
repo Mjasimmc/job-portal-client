@@ -54,13 +54,13 @@ const ChatApplicant = ({ userId, job }) => {
         document.documentElement.scrollTop = document.documentElement.scrollHeight;
     };
 
-    const sendMessage = async () => {
+    const sendMessage = async (sendingMessage) => {
         try {
             if (!sendMessageData.trim()) {
                 return toast.error('No message found to send', toast_config);
             }
-            const messageStored = await sendMessageToApplicationId(sendMessageData, applicantId, 'text');
-            setSendMessageData('');
+            const messageStored = await sendMessageToApplicationId(sendingMessage, applicantId, 'text');
+           
             setApplicantMessages((prev) => [...prev, messageStored]);
             socket.emit('sendMessage', {
                 ...messageStored,
@@ -80,7 +80,7 @@ const ChatApplicant = ({ userId, job }) => {
  
     return (
         <>
-            <div className="w-full flex-1 p-4 flex flex-col ">
+         {applicantMessages.length >0 &&   <div className="w-full flex-1 p-4 flex flex-col ">
                 <div className="border p-4 rounded-lg duration-1000 text-md font-[350] max-w-full box-shadow flex-1 flex flex-col gap-3">
                     {applicantMessages.map((mes, index) => {
                         const currentDate = getDateCurrentDate(mes.createdAt);
@@ -96,13 +96,14 @@ const ChatApplicant = ({ userId, job }) => {
                         return <MyChat key={mes._id} mes={mes} chat={user.id === mes.sender}  index={index}/>;
                     })}
                 </div>
-            </div>
+            </div>}
             <div className={`w-full fixed bottom-2 left-0 min-w-[300px]`}>
                 <div className="w-full  p-2 px-6 xl:px-[5.5rem]">
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            sendMessage();
+                            sendMessage(sendMessageData);
+                            setSendMessageData('');
                         }}
                         className={`flex items-end box-shadow rounded-lg border gap-4 px-3 ${isDarkMode ? 'bg-[#2d2d2d]' : 'bg-white'
                             }`}
@@ -116,7 +117,7 @@ const ChatApplicant = ({ userId, job }) => {
                             value={sendMessageData}
                             placeholder="Type here ..."
                         />
-                        <MyButton type="submit">
+                        <MyButton type="submit" >
                             <Send />
                         </MyButton>
                     </form>

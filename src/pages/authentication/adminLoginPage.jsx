@@ -24,7 +24,7 @@ const AdminLoginPage = () => {
     return (<>
         <NoHeaderContentBody>
             {/* <UserLogged /> */}
-            <div className='login-css-container text-black'>
+            <div className='login-css-container w-full max-w-[23rem] border '>
                 <div className="login-css-heading">Sign In</div>
                 <div action="" className="form">
                     <LoginAdmin />

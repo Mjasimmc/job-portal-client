@@ -12,8 +12,10 @@ const MyJobList = () => {
         try {
             setLoad(true)
             const jobData = await employerGetJobData()
+            console.log(jobData)
             setJobs(jobData)
         } catch (error) {
+            console.log(error)
             alert("server error")
         } finally {
             setLoad(false)

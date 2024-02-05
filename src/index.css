@@ -54,7 +54,7 @@ body {
 
 .job-card {
   /* min-height: 10rem; */
-  box-shadow: 0 0 10px #00000097;
+  box-shadow: 0 0 5px #00000097;
 }
 
 .job-card:hover {

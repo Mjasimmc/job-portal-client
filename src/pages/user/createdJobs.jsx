@@ -6,22 +6,22 @@ import UserSubscriptionData from '../../components/userComponents/subscription/u
 
 const CreatedJobs = () => {
 
-    const [verfication, setVerification] = useState('pending')
-    const verifyEmployer = async () => {
-        try {
-            const employer = await getEmployerDatab()
-            if (employer._id) {
-                setVerification('success')
-            } else {
-                setVerification('failed')
-            }
-        } catch (error) {
+    // const [verfication, setVerification] = useState('pending')
+    // const verifyEmployer = async () => {
+    //     try {
+    //         const employer = await getEmployerDatab()
+    //         if (employer._id) {
+    //             setVerification('success')
+    //         } else {
+    //             setVerification('failed')
+    //         }
+    //     } catch (error) {
 
-        }
-    }
-    useEffect(() => {
-        verifyEmployer()
-    }, [])
+    //     }
+    // }
+    // useEffect(() => {
+    //     verifyEmployer()
+    // }, [])
     return (
         <div className='w-full'>
             <h1 className='p-6 pt-2  text-3xl'>Manage Jobs</h1>

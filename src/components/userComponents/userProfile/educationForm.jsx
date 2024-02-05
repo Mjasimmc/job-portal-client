@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { addEducation } from '../../../service/user';
 import { useNavigate } from 'react-router-dom';
+import InputTextField from '../../../ui/elements/InputTextField';
+import MyButton from '../../../ui/elements/myButton';
 
 const EducationForm = () => {
     const navigate = useNavigate()
@@ -70,7 +72,7 @@ const EducationForm = () => {
 
     return (
         <div className='w-full p-2 lg:px-10'>
-             <div className="flex justify-end w-full">
+            <div className="flex justify-end w-full">
                 <Button className='!text-black !bg-red-50 !m-3' onClick={() => navigate("/profile")}>Back to Profile</Button>
             </div>
             <div className='w-full border shadow'>
@@ -80,8 +82,8 @@ const EducationForm = () => {
 
                 <div className='grid md:grid-cols-2 gap-4 p-2'>
                     <div className='grid'>
-                        <TextField
-                            className='!caret-black'
+                        <InputTextField
+                            // className='!caret-black'
                             label='Degree'
                             value={educationData.degree}
                             onChange={(e) => handleInputData('degree', e.target.value)}
@@ -93,8 +95,8 @@ const EducationForm = () => {
 
                 <div className='grid md:grid-cols-2 gap-4 p-2'>
                     <div className='grid'>
-                        <TextField
-                            className='!caret-black'
+                        <InputTextField
+                            // className='!caret-black'
                             label='College'
                             value={educationData.college}
                             onChange={(e) => handleInputData('college', e.target.value)}
@@ -106,8 +108,8 @@ const EducationForm = () => {
 
                 <div className='grid md:grid-cols-2 gap-4 p-2'>
                     <div className='grid'>
-                        <TextField
-                            className='!caret-black'
+                        <InputTextField
+                            // className='!caret-black'
                             label='Course'
                             value={educationData.course}
                             onChange={(e) => handleInputData('course', e.target.value)}
@@ -121,7 +123,7 @@ const EducationForm = () => {
                     Graduation Start Date
                     <CalendarIcon />
                     <DatePicker
-                        className='border rounded-lg caret-black p-3 flex items-center'
+                        className='border rounded-lg text-black caret-black p-3 flex items-center'
                         showIcon
                         selected={educationData.graduationStartDate || new Date()}
                         dateFormat='dd/MM/yyyy'
@@ -136,7 +138,7 @@ const EducationForm = () => {
                     Graduation End Date
                     <CalendarIcon />
                     <DatePicker
-                        className='border rounded-lg caret-black p-3 flex items-center'
+                        className='border rounded-lg text-black caret-black p-3 flex items-center'
                         showIcon
                         selected={educationData.graduationEndDate || new Date()}
                         dateFormat='dd/MM/yyyy'
@@ -147,9 +149,11 @@ const EducationForm = () => {
                     )}
                 </div>
 
-                <Button className='!shadow !m-2 !bg-gray-700 !text-white' onClick={handleSubmit}>
-                    Save
-                </Button>
+                <div className="flex justify-center">
+                    <MyButton className='px-4 text-lg m-4' onClick={handleSubmit}>
+                        Save
+                    </MyButton>
+                </div>
             </div>
         </div>
     );

@@ -17,3 +17,13 @@ export const removeFromSavedList = async (jobId) => {
         throw error
     }
 }
+
+
+export const employerGetJobData = async (jobId)=>{
+    try {
+        const res = await ApiCall.get('user/employer-job-data/'+jobId)
+        return res.data
+    } catch (error) {
+        throw error?.response?.data || 'server error'
+    }
+}

@@ -28,7 +28,7 @@ const EditEmployeeProfile = () => {
     const saveEmployeeProfile = async () => {
         try {
             await updateEmployeeProfile(employeeData);
-            navigate('/profile')
+            navigate(-1)
             toast.success("Updated employee profile", toast_config);
         } catch (error) {
             console.error(error);

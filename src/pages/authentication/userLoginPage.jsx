@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import Google from '../../assets/icons/google_logo.png'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NoHeaderContentBody from '../../ui/body/no-header-content-body';
 
-import banner_1 from '../../assets/banners/banner-2.svg'
-import RegisterUser from '../../components/authComponents/registerUser';
 import LoginUser from '../../components/authComponents/loginUser';
 import UserLogged from '../../config/userLogged';
 import { googleAuth } from '../../firebase/firebaseConfig';
@@ -33,7 +30,7 @@ const UserLoginPage = () => {
     return (<>
         <NoHeaderContentBody>
             <UserLogged />
-            <div className='login-css-container text-black'>
+            <div className='login-css-container w-full max-w-[23rem] border '>
                 <div className="login-css-heading">Sign In</div>
                 <div action="" className="form">
                     <LoginUser />

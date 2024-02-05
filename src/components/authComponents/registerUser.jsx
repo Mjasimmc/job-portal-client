@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../config/constants';
 import { userRegister } from '../../service/authServive';
 import { useNavigate } from 'react-router-dom';
+import InputTextField from '../../ui/elements/InputTextField';
+import MyButton from '../../ui/elements/myButton';
 
 const RegisterUser = () => {
     const navigate = useNavigate()
@@ -90,7 +92,7 @@ const RegisterUser = () => {
             setUserData({ ...datas })
             return validation
         } catch (error) {
-            
+
         }
     }
     const submitRegister = async () => {
@@ -98,60 +100,75 @@ const RegisterUser = () => {
 
             if (!validateAll()) return false
             const res = await userRegister(userData)
-            
+
             toast.success("submited", toast_config)
             navigate('/auth/otp/' + res.data)
         } catch (error) {
             toast.error(error, toast_config)
-            
+
         }
     }
     return (
         <>
-          
 
-            <input required="" className="login-css-form-input " type="text"
+
+            <InputTextField
+                required=""
+                // className="login-css-form-input"
+                type="text"
                 value={userData.name.data}
                 onChange={(e) => handleDataInput(e.target.value, 'name')}
-                placeholder="User-name" m-2 />
+                label="User-name" m-2 />
             <div className="">
                 {!userData.name.valid && <p className='text-xs text-[red]'> Name required</p>}
             </div>
-            <input required="" className="login-css-form-input" type="email"
+            <InputTextField
+                required=""
+                // className="login-css-form-input"
+                type="email"
                 value={userData.email.data}
                 onChange={(e) => handleDataInput(e.target.value, 'email')}
-                placeholder="Email" m-2 />
+                label="Email" m-2 />
             <div className="">
                 {!userData.email.valid && <p className='text-xs text-[red]'>Input Valid Email</p>}
             </div>
-            <input required="" className="login-css-form-input" type="tel"
+            <InputTextField
+                required=""
+                // className="login-css-form-input"
+                type="tel"
                 value={userData.phone.data}
                 onChange={(e) => handleDataInput(e.target.value, 'phone')}
-                placeholder="Phone" m-2 />
+                label="Phone" m-2 />
             <div className="">
                 {!userData.phone.valid && <p className='text-xs text-[red]'> Input Valid Phone Number</p>}
             </div>
-            <input required="" className="login-css-form-input" type="password"
+            <InputTextField
+                required=""
+                // className="login-css-form-input"
+                type="password"
                 value={userData.password.data}
                 onChange={(e) => handleDataInput(e.target.value, 'password')}
-                placeholder="password" />
+                label="password" />
             <div className="m-2">
                 {!userData.password.valid && <p className='text-xs text-[red]'>required A-Z + a-z + 0-9</p>}
                 {!userData.password.valid && <p className='text-xs text-[red]'> Minimum 8 charected</p>}
             </div>
-            <input required="" className="login-css-form-input" type="password"
+            <InputTextField
+                required=""
+                // className="login-css-form-input"
+                type="password"
                 value={userData.repassword.data}
                 onChange={(e) => handleDataInput(e.target.value, 'repassword')}
-                placeholder="Re-password" />
+                label="Re-password" />
             <div className="m-2">
                 {!userData.repassword.valid && userData.repassword.data && <p className='text-xs text-[red]'>password not match</p>}
                 {userData.repassword.valid && userData.repassword.data && <p className='text-xs text-[green]'>password  matched</p>}
             </div>
             <span className="login-css-fgtpass"><a href="#" className='login-css-form-input-a'>Forgot Password ?</a></span>
 
-            <button className="login-css-button" type="submit" onClick={() => submitRegister()} >
+            <MyButton className="login-css-button" type="submit" onClick={() => submitRegister()} >
                 Register
-            </button>
+            </MyButton>
         </>
     );
 }

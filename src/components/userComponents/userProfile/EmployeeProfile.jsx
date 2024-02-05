@@ -6,16 +6,19 @@ import { getEmployeeData } from '../../../service/user';
 import MyButton from '../../../ui/elements/myButton';
 import { getAllEmployeeResumes } from '../../../service/resumeMangement';
 import { BaseURL } from '../../../config_Api';
+import Loading from '../../../ui/LoadingPages/Loading';
 
 const EmployeeProfile = () => {
     const [employeeData, setEmployeeData] = useState(null);
     const [education, setEducation] = useState([]);
     const [experience, setExperience] = useState([]);
-    const [resumes, setResumeData] = useState([])
+    const [resumes, setResumeData] = useState([]);
+    const [load,setLoad] = useState(true)
     const navigate = useNavigate();
 
     const getEmployeesData = async () => {
         try {
+            setLoad(true)
             const res = await getEmployeeData();
             const resumeData = await getAllEmployeeResumes()
             console.log(resumeData)
@@ -25,17 +28,24 @@ const EmployeeProfile = () => {
             setExperience(res.experience);
         } catch (error) {
             console.error("Error fetching employee data:", error);
+        } finally {
+            setLoad(false)
         }
     };
 
     useEffect(() => {
         getEmployeesData();
     }, []);
+    if(load){
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <>
             <div className="w-full grid p-2 gap-2">
-                {employeeData && (
+                {!load && employeeData && (
                     <>
                         <div className="w-full flex justify-between items-center">
                             <p className='text-xl font-bold '>Personal Information</p>
@@ -102,7 +112,7 @@ const EmployeeProfile = () => {
                         </div>
                     </>
                 )}
-                {!employeeData && (
+                {!load && !employeeData && (
                     <div className="w-ful">
                         <MyButton onClick={() => navigate('edit-profile-data')}>
                             Create Employee Profile

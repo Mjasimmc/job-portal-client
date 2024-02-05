@@ -13,14 +13,20 @@ const ApplicantPage = () => {
     const { applicantId } = useParams()
     const [applicantData, setApplicantData] = useState(null)
     const [showCV, setShowCV] = useState(true)
+    const [load,setLoad]  = useState(false)
     const getData = async () => {
         try {
+            setLoad(true)
             const applicantDetails = await getApplicantDataWithId(applicantId)
-           
-            socket.emit('createRoom', applicantDetails.user._id)
-            setApplicantData(applicantDetails)
+            setLoad(false)
+            console.log(applicantDetails)
+            if(applicantDetails){
+                socket.emit('createRoom', applicantDetails.user._id)
+                setApplicantData(applicantDetails)
+            }
         } catch (error) {
             console.log(error)
+            setLoad(false)
             toast.error('error occured on fetching data', toast_config)
         }
     }
@@ -28,7 +34,7 @@ const ApplicantPage = () => {
         getData()
     }, [applicantId]);
     return (<>
-        {!applicantData && <Loading />}
+        {load && <Loading />}
         {applicantData && <div className='p-2 flex-1 flex flex-col w-full   pb-[4rem]'>
             <div className="flex justify-between p-4">
                 <p>{applicantData?.user.name}</p>
@@ -44,7 +50,6 @@ const ApplicantPage = () => {
                         <MyButton  onClick={() => {
                         window.open(BaseURL + "/uploads/" + applicantData.resume_id, '_blank');
                     }}>View Resume</MyButton>
-                        <MyButton>View Profile</MyButton>
                     </div>
                 </div>
             </div>

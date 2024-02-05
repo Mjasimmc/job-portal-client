@@ -5,6 +5,8 @@ import Loading from '../../ui/LoadingPages/Loading';
 import { userGetSelfPlanDetails } from '../../service/subscription';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../config/constants';
+import { useNavigate } from 'react-router-dom';
+import ListSubscriptionPlan from '../../components/userComponents/subscription/listSubscriptionPlan';
 
 
 
@@ -14,6 +16,7 @@ const CreateJobPostForm = lazy(() => import('../../components/userComponents/cre
 
 
 const JobPostForm = () => {
+    const navigate = useNavigate()
     const [verfication, setVerification] = useState('pending')
     const verifyEmployer = async () => {
         try {
@@ -27,11 +30,11 @@ const JobPostForm = () => {
             if (employer._id) {
                 return setVerification('success')
             }
-
-            setVerification('failed')
+            navigate('/profile/edit-company-data')
         } catch (error) {
-            console.log(error)
-            setVerification('failed')
+            // console.log(error)
+            // setVerification('failed')
+            navigate('/profile/edit-company-data')
         }
     }
     useEffect(() => {
@@ -44,7 +47,7 @@ const JobPostForm = () => {
             <Suspense fallback={<Loading />} >
                 {verfication == 'success' && <CreateJobPostForm />}
                 {verfication == 'failed' && (<p className=' p-5 text-xl'>Create Employer Profile for <br /> Create Jobs</p>)}
-                {verfication == 'plan-not-valid' && (<p className=' p-5 text-xl'>No Valid Plan Found</p>)}
+                {verfication == 'plan-not-valid' &&  <ListSubscriptionPlan />}
                 {verfication == 'pending' && <Loading />}
             </Suspense>
         </div>

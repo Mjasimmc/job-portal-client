@@ -9,13 +9,13 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import MyChat from '../manageJobs/myChat';
 
-
-const ChatEmployer = ({ userId,job }) => {
+const ChatEmployer = ({ userId, job }) => {
     const isDarkMode = useSelector(state => state.theme.isDarkMode);
     const { applicantId } = useParams();
     const user = useSelector(state => state.user);
     const [sendMessageData, setSendMessageData] = useState('');
     const [applicantMessages, setApplicantMessages] = useState([]);
+    const [sendingMessage, setSendingMessage] = useState(false);
 
     const getDateCurrentDate = (date) => {
         const currDate = new Date(date).toLocaleDateString();
@@ -57,32 +57,33 @@ const ChatEmployer = ({ userId,job }) => {
 
     const sendMessage = async () => {
         try {
-            if (!sendMessageData.trim()) {
-                return toast.error('No message found to send', toast_config);
+            if (sendingMessage || !sendMessageData.trim()) {
+                return toast.error('Cannot send empty message or multiple messages at once', toast_config);
             }
+
+            setSendingMessage(true);
 
             const messageStored = await sendMessageToApplicationId(sendMessageData, applicantId, 'text');
             setApplicantMessages((prev) => [...prev, messageStored]);
-            
+
             setSendMessageData('');
             socket.emit('sendMessage', {
                 ...messageStored,
                 senderId: userId,
                 applicant: true,
-                description:  user.name+' messaged on '+ job.role
+                description: user.name + ' messaged on ' + job.role,
             });
         } catch (error) {
             toast.error(error, toast_config);
+        } finally {
+            setSendingMessage(false);
         }
     };
-    
-
-  
 
     return (
         <>
             <div className="w-full flex-1 p-4 flex flex-col">
-                <div className="border p-4 rounded-lg duration-1000 text-md font-[350] max-w-full box-shadow flex-1 flex flex-col gap-1">
+                <div className="border p-4 rounded-lg duration-1000 text-md font-[350]  max-w-full box-shadow flex-1 flex flex-col gap-1">
                     {applicantMessages.map((mes, index) => {
                         const currentDate = getDateCurrentDate(mes.createdAt);
                         if (currentDate !== lastDisplayedDate) {
@@ -116,8 +117,9 @@ const ChatEmployer = ({ userId,job }) => {
                             onChange={(e) => setSendMessageData(e.target.value)}
                             value={sendMessageData}
                             placeholder="Type here ..."
+                            disabled={sendingMessage}
                         />
-                        <MyButton type="submit">
+                        <MyButton type="submit" disabled={sendingMessage}>
                             <Send />
                         </MyButton>
                     </form>
