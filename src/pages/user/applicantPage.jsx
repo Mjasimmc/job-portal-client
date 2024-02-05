@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../config/constants';
 import Loading from '../../ui/LoadingPages/Loading';
 import { BaseURL } from '../../config_Api';
+import ViewApplicantProfile from '../../components/userComponents/manageJobs/viewApplicantProfile';
 
 const ApplicantPage = () => {
     const { applicantId } = useParams()
@@ -40,6 +41,7 @@ const ApplicantPage = () => {
                 <p>{applicantData?.user.name}</p>
                 <p>status</p>
             </div>
+            <ViewApplicantProfile user={applicantData?.user} />
             <div className="w-full p-2">
                 <div className="border p-4 rounded-lg">
                     <h1 className='text-lg font-[450] underline'>Cover Letter <MyButton className='text-xs' onClick={() => setShowCV((prev) => !prev)}> {showCV ? "hide" : "show"} </MyButton></h1>
