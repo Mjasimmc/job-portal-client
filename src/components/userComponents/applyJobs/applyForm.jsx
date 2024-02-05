@@ -76,6 +76,7 @@ const ApplyForm = () => {
             toast.success("Applied successfully", toast_config);
 
         } catch (error) {
+            console.log(error)
             toast.error("Error occurred on submitting", toast_config);
         }
     };
@@ -89,8 +90,10 @@ const ApplyForm = () => {
                 return setPageNotFound(true)
             };
             const applied = await validateJobApplied(jobId);
-            if (applied) {
+            if (applied.user) {
+                console.log(applied)
                 setJobApplied(true)
+                setLoadPage(false)
                 toast.error('Already Applied')
             } else {
                 const res = await getEmployeeData();
@@ -101,7 +104,8 @@ const ApplyForm = () => {
                 setExperience(res.experience);
             }
         } catch (error) {
-            return setServerError(true);
+            console.log(error)
+            setServerError(true);
         } finally {
             setLoadPage(false)
         }
@@ -113,7 +117,7 @@ const ApplyForm = () => {
 
     return (
         <>
-            {!employeeData && <Loading />}
+            {loadPage && <Loading />}
             {employeeData && <Container className='font-[300]' component="main" maxWidth="sm">
                 <CssBaseline />
                 {jobApplySucess && <SuccessPageJobApplied />}

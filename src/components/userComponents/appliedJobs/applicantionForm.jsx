@@ -8,6 +8,7 @@ import { toast_config } from '../../../config/constants';
 import { socket } from '../../../socketIo';
 import Loading from '../../../ui/LoadingPages/Loading';
 import ChatEmployer from './chatEmployer';
+import { BaseURL } from '../../../config_Api';
 
 const ApplicantionForm = () => {
     const { applicantId } = useParams()
@@ -40,7 +41,9 @@ const ApplicantionForm = () => {
                     <div className="w-full flex flex-wrap justify-between items-center">
                         <h1 className='text-lg font-[450] underline'>Cover Letter <MyButton className='text-xs' onClick={() => setShowCV((prev) => !prev)}> {showCV ? "hide" : "show"} </MyButton> </h1>
                         <div className="flex flex-wrap gap-4">
-                            <MyButton>View shared Resume</MyButton>
+                            <MyButton  onClick={() => {
+                        window.open(BaseURL + "/uploads/" + applicantData.resume_id, '_blank');
+                    }}>View shared Resume</MyButton>
                         </div>
                     </div>
                     {showCV && <p className='text-sm font-[350] p-2' style={{ whiteSpace: 'pre-line' }}> {applicantData?.coverLetter} </p>}
