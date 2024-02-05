@@ -136,27 +136,27 @@ const JobCards = ({ job, index }) => {
                             <div className="text-[.7rem] ps-4 max-w-full">
                                 {job.requirements.map((requirement, i) => (
                                     <Fragment key={i}>
-                                       {i <2 && <p className='flex'>{i < 3 && truncateDescription(requirement, 15)} </p>}
+                                        {i < 2 && <p className='flex'>{i < 3 && truncateDescription(requirement, 15)} </p>}
                                     </Fragment>
                                 ))}
                             </div>
                         </div>}
                 </div>
                 <div className="px-1 my-1 truncate w-full ">
-                    <p className="text-xs" style={{ whiteSpace: 'pre-line' }}>{job.description}</p>
+                    <p className="text-xs">{   truncateDescription(job.description, 55)}</p>
                 </div>
                 <div className="flex justify-between items-center gap-4 max-h-[2rem] my-3 ">
                     {!jobApplied && job.employer.user !== user.id && <MyButton className="min-w-[8rem]" onClick={handleApplyJob}>Apply</MyButton>}
                     {jobApplied && job.employer.user !== user.id && <MyButton className="min-w-[8rem]"  >Applied</MyButton>}
                     {job.employer.user === user.id && <MyButton onClick={handleManageJobs} className="min-w-[8rem]">Manage</MyButton>}
-                    
-                 { user.isLogin &&  <> 
-                    {postSaved && <div className="rounded-md " onClick={handleRemoveSaveJobList}>
-                        <TurnedIn />
-                    </div>}
-                    {!postSaved && <div className="rounded-md " onClick={handleSaveJobList}>
-                        <TurnedInNot />
-                    </div>}
+
+                    {user.isLogin && <>
+                        {postSaved && <div className="rounded-md " onClick={handleRemoveSaveJobList}>
+                            <TurnedIn />
+                        </div>}
+                        {!postSaved && <div className="rounded-md " onClick={handleSaveJobList}>
+                            <TurnedInNot />
+                        </div>}
                     </>}
                 </div>
                 <p className='text-[.6rem] text-end'>posted on {ViewDate(job.createdAt)}</p>
