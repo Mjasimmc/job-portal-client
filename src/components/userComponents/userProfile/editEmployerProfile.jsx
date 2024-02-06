@@ -7,6 +7,7 @@ import { toast_config } from '../../../config/constants';
 import { createEmployerProfile, getEmployerDatab } from '../../../service/user';
 import InputTextField from '../../../ui/elements/InputTextField';
 import MyButton from '../../../ui/elements/myButton';
+import LocationInputField from '../../../config/googleLocation';
 const EditEmployerProfile = () => {
     const navigate = useNavigate()
 
@@ -30,7 +31,7 @@ const EditEmployerProfile = () => {
         } else if (type === 'company_website') {
             setEmployerData({ ...employerData, [type]: { text: value, valid: validate('url', value) } })
         } else {
-            setEmployerData({ ...employerData, [type]: { text: value, valid: value.length > 1 } })
+            setEmployerData((prevData)=>{ return { ...prevData, [type]: { text: value, valid: value.length > 1 } }})
         }
     }
     const validateData = (data) => {
@@ -91,6 +92,11 @@ const EditEmployerProfile = () => {
     }, [])
 
 
+    useEffect(()=>{
+        console.log(employerData)
+    },[employerData])
+
+
 
     return (
         <>
@@ -121,14 +127,13 @@ const EditEmployerProfile = () => {
                     <p className=' md:col-span-4 flex items-center'>Company Location : </p>
 
                     <div className="md:!col-span-6 !caret-black grid">
-                        <InputTextField
-                            label={"company_location "}
+                       <LocationInputField
                             value={employerData.company_location.text}
-                            error={!employerData.company_location.valid}
-                            onChange={(e) => {
-                                handleInput(e.target.value, 'company_location')
+                            setValue={(value) => {
+                                handleInput(value, 'company_location')
                             }}
-                            className='md:!col-span-6 !caret-black' type='text' />
+                       
+                       />
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Website : </p>
                     <div className="md:!col-span-6 !caret-black grid">

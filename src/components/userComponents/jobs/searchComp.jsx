@@ -5,6 +5,7 @@ import { Button, TextField, MenuItem, FormControl, InputLabel, Select } from '@m
 import MyButton from '../../../ui/elements/myButton';
 import { useSelector } from 'react-redux';
 import InputTextField from '../../../ui/elements/InputTextField';
+import LocationInputField from '../../../config/googleLocation';
 
 const SearchComp = () => {
     const navigate = useNavigate();
@@ -92,16 +93,15 @@ const SearchComp = () => {
 
     return (
         <>
-            <div className="w-full grid   p-4 px-2 md:px-10 animate-cards">
-                <div className={`grid job-card   rounded-lg ${isDarkMode ? " border border-[#ff35ab]" : ''} `}>
+            <div className="w-full grid   p-4 px-2 md:px-10 ">
+                <div className={`grid job-card   rounded-lg ${isDarkMode ? "bg-[#ffffff62] border border-[#ff35ab]" : ''} `}>
                     <div className='w-full flex flex-col items-center p-2 '>
                         <div className="w-11/12 text-xl">
                             <p>Search</p>
                         </div>
                         <div className="w-full grid sm:grid-cols-2 lg:grid-cols-3 gap-2 ">
 
-                            <InputTextField 
-                            className='shadows !z-0 !caret-black'
+                            <InputTextField
                                 label='Role'
                                 value={searchParams.jobs}
                                 onChange={(e) => handleChange('jobs', e.target.value)}
@@ -113,12 +113,13 @@ const SearchComp = () => {
                                 value={searchParams.company}
                                 onChange={(e) => handleChange('company', e.target.value)}
                             />
-                            <InputTextField
+                            {/* <InputTextField
                                 className='shadows !z-0 !caret-black'
                                 label='Location'
                                 value={searchParams.location}
                                 onChange={(e) => handleChange('location', e.target.value)}
-                            />
+                            /> */}
+                            <LocationInputField   value={searchParams.location} getVal={'name'} setValue={(value) => handleChange('location',value)} />
                         </div>
                     </div>
                     {showFilter && <div className='w-full flex flex-col items-start p-3'>

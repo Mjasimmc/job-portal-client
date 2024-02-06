@@ -46,6 +46,7 @@ const JobInformation = ({ setFormNumber }) => {
         () => ['Part-Time', 'Full-Time', 'Freelance', 'Internship', 'Remote'],
         []
     );
+
     const handleJobTypeToggle = (jobType) => {
         const updatedJobTypes = [...jobData.jobType];
 
@@ -72,21 +73,18 @@ const JobInformation = ({ setFormNumber }) => {
         );
     }, [jobForm]);
 
-    const isStringValid = (key, value) => {
-        if (key === 'qualification') {
-            return typeof value === 'string' && (value.trim() !== '' || qualificationOptions.includes(value.trim()));
-        }
+    const isStringValid = (value) => {
         return typeof value === 'string' && value.trim() !== '';
     };
 
     const handleInputData = (key, value) => {
         setJobData((prevJobData) => ({ ...prevJobData, [key]: value }));
-        const valid = key == 'jobType' ? value.length !== 0 : isStringValid(key, value)
+        const valid = key === 'jobType' ? value.length !== 0 : isStringValid(value);
         setValidation((prevValidation) => ({ ...prevValidation, [key]: valid }));
     };
 
     const handleQualificationChange = (_, value) => {
-        const selectedQualification = value.trim() !== '' ? value : null;
+        const selectedQualification = value.trim();
         handleInputData('qualification', selectedQualification);
     };
 
@@ -110,30 +108,13 @@ const JobInformation = ({ setFormNumber }) => {
     };
 
     const handleSubmit = () => {
-        const validationForm = JSON.parse(JSON.stringify(validation))
-        for (const key in validationForm) {
-            if (key == 'jobType') {
-                validationForm[key] = jobData[key].length > 0
-            } else {
-                validationForm[key] = !!jobData[key] ? true : false
-            }
-        }
-        setValidation(validationForm)
-        const isFormValid = Object.values(validationForm).every((isValid) => {
-
-            return isValid
-        });
-        if (!isFormValid) return null
-        if (jobData.jobType.length === 0 || jobData.vacancy === '') {
-            return null;
-        }
+        const isFormValid = Object.values(validation).every((isValid) => isValid);
         if (isFormValid) {
             handleSetJobForm(jobData);
             setFormNumber(1);
-        } else {
-
         }
     };
+
     return (
         <div className={`flex flex-col gap-4 border rounded-lg `}>
             <p className='text-xl font-semibold m-2'>Job Information</p>
@@ -146,7 +127,7 @@ const JobInformation = ({ setFormNumber }) => {
                         value={jobData.role}
                         onChange={(e) => handleInputData('role', e.target.value)}
                         error={!validation.role}
-                        helperText={getHelperText('role')}
+                     
                     />
                 </div>
             </div>
@@ -160,7 +141,7 @@ const JobInformation = ({ setFormNumber }) => {
                         value={jobData?.vacancy}
                         onChange={(e) => handleInputData('vacancy', e.target.value)}
                         error={!validation.vacancy}
-                        helperText={getHelperText('vacancy')}
+                      
                     />
                 </div>
             </div>
@@ -181,7 +162,7 @@ const JobInformation = ({ setFormNumber }) => {
                                 className='!caret-black'
                                 value={typedQualification}
                                 error={!validation.qualification}
-                                helperText={getHelperText('qualification')}
+                                helperText={getHelperText('qualification')} // Corrected to 'helpertext'
                             />
                         )}
                     />
@@ -196,7 +177,7 @@ const JobInformation = ({ setFormNumber }) => {
                         value={jobData?.experience}
                         onChange={(e) => handleInputData('experience', e.target.value)}
                         error={!validation.experience}
-                        helperText={getHelperText('experience')}
+                      
                     />
                 </div>
             </div>
@@ -212,7 +193,7 @@ const JobInformation = ({ setFormNumber }) => {
                         value={jobData?.description}
                         onChange={(e) => handleInputData('description', e.target.value)}
                         error={!validation.description}
-                        helperText={getHelperText('description')}
+                       
                     />
                 </div>
             </div>
@@ -231,7 +212,6 @@ const JobInformation = ({ setFormNumber }) => {
                             </button>
                         ))}
                     </div>
-                    
                 </div>
             </div>
 

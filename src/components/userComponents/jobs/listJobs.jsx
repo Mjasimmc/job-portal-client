@@ -49,7 +49,7 @@ const ListJobs = () => {
     }, [location, curPage , userLogin]);
     return (
         <div className='flex-1 flex w-full flex-col justify-between '>
-            <div className="w-full h-[4rem] flex justify-end px-10 items-center">
+            <div className="w-full h-[4rem] flex justify-end sm:px-10 items-center">
                 <div className="flex gap-2">
                     {curPage > 1 && <MyButton className=" !text-[.7rem] !font-[200]" onClick={() => handlePageChange(curPage - 1)} >
                         <ArrowLeftOutlined />
@@ -64,7 +64,7 @@ const ListJobs = () => {
                 </div>
             </div>
             {load && <Loading />}
-            {!load && <div className='w-full md:px-10 font-[400] grid md:grid-cols-2 xl:grid-cols-3 gap-5 p-2'>
+            {!load && <div className='max-w-full md:px-10 font-[400] grid md:grid-cols-2 xl:grid-cols-3 gap-5 p-2'>
                 {jobs.map((job ,index) => (
                     <JobCards index={index} key={job._id} job={job} />
                 ))}

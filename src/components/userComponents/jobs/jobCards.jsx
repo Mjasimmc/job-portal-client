@@ -96,9 +96,11 @@ const JobCards = ({ job, index }) => {
 
     return (<>
         {show &&
-            <div className={`flex flex-col  duration-300 job-card hover:scale-[1.005] bg-white/5   active:scale-[.9] rounded-lg p-2 px-4  animate-cards ${isDarkMode ? 'border border-[#ff35ab]' : ''}`}>
+            <div className={`flex flex-col max-w-full  duration-300 job-card hover:scale-[1.005] bg-white/5   active:scale-[.9] rounded-lg p-2 px-4  animate-cards ${isDarkMode ? 'border border-[#ff35ab]' : ''}`}>
                 <div className="flex justify-between items-center">
-                    <div className="flex-1"><h1 className={`text-lg uppercase p-1 cursor-pointer ${isDarkMode ? 'text-[#3cff52]' : 'text-[#258430]'}`} onClick={() => navigate('/job/view/' + job._id)}><strong>{job.role}  </strong> </h1></div>
+                    <div className="flex-1">
+                        <h1 className={`text-lg uppercase p-1 cursor-pointer ${isDarkMode ? 'text-[#3cff52]' : 'text-[#258430]'}`} onClick={() => navigate('/job/view/' + job._id)}><strong>{job.role}  </strong> </h1>
+                        </div>
                     <div className="relative ">
                         <div className="" onClick={() => setOptionDrop(!optionDrop)}>
                             {!optionDrop && <MoreVert className='' />}
@@ -117,7 +119,7 @@ const JobCards = ({ job, index }) => {
                     </div>
                 </div>
                 <div className=' w-full flex flex-wrap  flex-1  !text-md ' >
-                    <div className="flex min-w-[180px] flex-col flex-[.6] pe-4   max-w-full">
+                    <div className="flex  flex-col flex-[.6] pe-4  flex-wrap  max-w-full">
                         <div className="w-full flex  flex-wrap gap-1">
                             {job.jobType.map((title, index) => (
                                 <p key={index} className={`border  text-[.7rem] px-2 rounded-md ${isDarkMode ? 'bg-[#172f5b]' : 'bg-[#0a245631]'}`}>{title}</p>
@@ -143,7 +145,7 @@ const JobCards = ({ job, index }) => {
                         </div>}
                 </div>
                 <div className="px-1 my-1 truncate w-full ">
-                    <p className="text-xs">{   truncateDescription(job.description, 55)}</p>
+                    <p className="text-xs">{truncateDescription(job.description, 55)}</p>
                 </div>
                 <div className="flex justify-between items-center gap-4 max-h-[2rem] my-3 ">
                     {!jobApplied && job.employer.user !== user.id && <MyButton className="min-w-[8rem]" onClick={handleApplyJob}>Apply</MyButton>}

@@ -11,15 +11,16 @@ import { useSelector } from 'react-redux';
 import MyButton from '../../../ui/elements/myButton';
 import InputTextField from '../../../ui/elements/InputTextField';
 import Loading from '../../../ui/LoadingPages/Loading';
+import LocationInputField from '../../../config/googleLocation';
 
 const CompanyDataForm = ({ setFormNumber }) => {
-    const [load,setLoad] = useState(false)
+    const { isDarkMode } = useSelector(state => state.theme)
+    const [load, setLoad] = useState(false)
     const { jobForm, handleSetJobForm } = useContext(JobCreateContext);
     const getEmployerInputs = async () => {
         try {
             setLoad(true)
             const employer = await getEmployerDatab()
-            setLoad(false)
             setCompanyData({
                 companyName: jobForm.companyName || employer.company_name || '',
                 salary: jobForm.salary || '',
@@ -27,10 +28,11 @@ const CompanyDataForm = ({ setFormNumber }) => {
                 deadline: jobForm.deadline || '',
                 contactEmail: jobForm.contactEmail || employer.company_email || '',
             });
+            setLoad(false)
         } catch (error) {
             toast.error("error occured", toast_config)
             setLoad(false)
-        } 
+        }
     }
 
     const [companyData, setCompanyData] = useState({
@@ -87,8 +89,8 @@ const CompanyDataForm = ({ setFormNumber }) => {
     };
 
     return (<>
-    {load && <Loading />}
-       {!load &&  <div className={`flex flex-col gap-4 border rounded-lg  `}>
+        {load && <Loading />}
+        {!load && <div className={`flex flex-col gap-4 border rounded-lg  `}>
             <h1 className='text-center text-2xl font-semibold underline underline-offset-1'>Company Information</h1>
 
             <div className=" grid md:grid-cols-2 gap-4 p-2">
@@ -99,34 +101,34 @@ const CompanyDataForm = ({ setFormNumber }) => {
                         value={companyData.companyName}
                         onChange={(e) => handleInputData('companyName', e.target.value)}
                         error={validation.companyName !== true}
-                        helperText={validation.companyName !== true ? validation.companyName : ''}
+                        // helperText={validation.companyName !== true ? validation.companyName : ''}
                     />
                 </div>
             </div>
-
             <div className=" grid md:grid-cols-2 gap-4 p-2">
                 <div className="grid">
                     <InputTextField
                         className='!caret-black'
                         label="Salary"
                         value={companyData.salary}
-                        onChange={(e) => handleInputData('salary', e.target.value.toUpperCase())}
+                        onChange={(e) => handleInputData('salary', e.target.value)}
                         error={validation.salary !== true}
-                        helperText={validation.salary !== true ? validation.salary : ''}
+                        // helperText={validation.salary !== true ? validation.salary : ''}
                     />
                 </div>
             </div>
 
             <div className=" grid md:grid-cols-2 gap-4 p-2">
                 <div className="grid">
-                    <InputTextField
+                    {/* <InputTextField
                         className='!caret-black'
                         label="Location"
                         value={companyData.location}
                         onChange={(e) => handleInputData('location', e.target.value)}
                         error={validation.location !== true}
                         helperText={validation.location !== true ? validation.location : ''}
-                    />
+                    /> */}
+                    <LocationInputField setValue={(value)=> handleInputData('location',value)}  value={companyData.location}/>
                 </div>
             </div>
 
@@ -152,16 +154,16 @@ const CompanyDataForm = ({ setFormNumber }) => {
                         value={companyData.contactEmail}
                         onChange={(e) => handleInputData('contactEmail', e.target.value)}
                         error={validation.contactEmail !== true}
-                        helperText={validation.contactEmail !== true ? validation.contactEmail : ''}
+                        // helperText={validation.contactEmail !== true ? validation.contactEmail : ''}
                     />
                 </div>
             </div>
             <div className="p-8 flex justify-end">
                 <MyButton className='!p-3 !px-5 !text-xl' onClick={() => setFormNumber(0)}>Prev</MyButton>
-                <MyButton className='!p-3 !px-5 !text-xl'   onClick={handleSubmit}>Next</MyButton>
+                <MyButton className='!p-3 !px-5 !text-xl' onClick={handleSubmit}>Next</MyButton>
             </div>
         </div>}
-    
+
     </>);
 }
 

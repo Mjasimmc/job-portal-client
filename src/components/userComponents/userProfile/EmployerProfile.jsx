@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { getEmployerDatab } from '../../../service/user';
 import Loading from '../../../ui/LoadingPages/Loading';
 import MyButton from '../../../ui/elements/myButton';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../../config/constants';
 
 const EmployerProfile = () => {
     const navigate = useNavigate()
@@ -18,7 +20,7 @@ const EmployerProfile = () => {
             setEmployerData(data)
 
         } catch (error) {
-            toast.error('data not found')
+            toast.error('data not found',toast_config)
         } finally {
             setLoad(false)
         }
