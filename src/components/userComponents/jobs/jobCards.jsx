@@ -118,8 +118,8 @@ const JobCards = ({ job, index }) => {
                         </div>}
                     </div>
                 </div>
-                <div className=' w-full flex flex-wrap  flex-1  !text-md ' >
-                    <div className="flex  flex-col flex-[.6] pe-4  flex-wrap  max-w-full">
+                <div className=' w-full flex flex-wrap max-sm:flex-col max-w-full flex-1  !text-md ' >
+                    <div className="flex  flex-col max-w-full flex-[.6] pe-4  flex-wrap  ">
                         <div className="w-full flex  flex-wrap gap-1">
                             {job.jobType.map((title, index) => (
                                 <p key={index} className={`border  text-[.7rem] px-2 rounded-md ${isDarkMode ? 'bg-[#172f5b]' : 'bg-[#0a245631]'}`}>{title}</p>
@@ -145,7 +145,7 @@ const JobCards = ({ job, index }) => {
                         </div>}
                 </div>
                 <div className="px-1 my-1 truncate w-full ">
-                    <p className="text-xs">{truncateDescription(job.description, 55)}</p>
+                    <p className="text-xs">{truncateDescription(job.description, 45)}</p>
                 </div>
                 <div className="flex justify-between items-center gap-4 max-h-[2rem] my-3 ">
                     {!jobApplied && job.employer.user !== user.id && <MyButton className="min-w-[8rem]" onClick={handleApplyJob}>Apply</MyButton>}
