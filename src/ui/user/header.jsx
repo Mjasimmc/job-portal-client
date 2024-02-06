@@ -75,7 +75,7 @@ const UserHeader = () => {
             setPageOptions
         }} />
             <HeaderBody>
-                <div className={`w-full h-full flex-1 flex items-center justify-between p-4   `}>
+                <div className={`w-full  h-full flex-1 flex items-center justify-between p-4   `}>
                     <div className="flex items-center h-full justify-normal gap-2">
 
                             <button onClick={handleOpenAndCloseSideBar} className=" active:scale-50 duration-100  p-1 flex items-center aspect-square lg:hidden ">
