@@ -19,7 +19,7 @@ const UserFooter = () => {
     return (
         // Render only if shouldHideFooter is false
         !shouldHideFooter && (
-            <div className={`w-full ${theme.primaryColor} p-5 text-center`}>
+            <div className={`w-full p-5 text-center`}>
                 <p>Job Portal &copy; 2024</p>
                 <p>Developed by <a href="mailto:mjasimmc@gmail.com">Jasim</a></p>
                 <div className="flex justify-center space-x-4 mt-2">

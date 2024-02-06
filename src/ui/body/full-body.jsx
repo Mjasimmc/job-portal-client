@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 const FullBody = ({ children }) => {
-    const { isDarkMode, primaryColor } = useSelector(state => state.theme);
+    const {  primaryColor } = useSelector(state => state.theme);
     const location = useLocation();
 
     const scrollTop = () => {
@@ -12,13 +12,12 @@ const FullBody = ({ children }) => {
             behavior: 'smooth' 
         });
     };
-
     useEffect(() => {
         scrollTop();
     }, [location]);
 
     return (
-        <div className={`w-full top-0 p-1 pt-[6.7rem] min-h-[100vh] flex flex-col items-center duration-300 ${primaryColor}`}>
+        <div className={`w-full top-0 min-w-[300px] max-w-[100vw] p-1 pt-[6.7rem] min-h-[100vh] flex flex-col items-center duration-300 ${primaryColor}`}>
             {children}
         </div>
     );
