@@ -13,7 +13,7 @@ const StatusBanner = () => {
         try {
             const res = await getDashBoardData();
             
-            console.log(res);
+            // console.log(res);
             toast.success('Fetched data successfully', toast_config);
             setCount(res);
         } catch (error) {

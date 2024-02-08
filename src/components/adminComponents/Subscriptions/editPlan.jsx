@@ -28,9 +28,9 @@ const EditPlan = () => {
             setPlanData({
                 ...planDetails, cost: price, jobLimit: jobPostLimit
             })
-            console.log(planDetails)
+            // console.log(planDetails)
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 

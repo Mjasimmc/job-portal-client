@@ -29,7 +29,7 @@ const ViewJobData = () => {
             // }
             setJobData(job);
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             // if (!serverError) {
             //     return setServerError(true);
             // }

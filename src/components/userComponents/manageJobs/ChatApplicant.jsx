@@ -10,8 +10,8 @@ import { toast_config } from '../../../config/constants';
 import MyChat from './myChat';
 
 const ChatApplicant = ({ userId, job }) => {
-    const isDarkMode = useSelector(state => state.theme.isDarkMode);
-    const { applicantId } = useParams();
+    const {isDarkMode,secondaryColor} = useSelector(state => state.theme);
+   const { applicantId } = useParams();
     const user = useSelector(state => state.user);
     const [sendMessageData, setSendMessageData] = useState('');
     const [applicantMessages, setApplicantMessages] = useState([]);
@@ -81,7 +81,7 @@ const ChatApplicant = ({ userId, job }) => {
     return (
         <>
          {applicantMessages.length >0 &&   <div className="w-full flex-1 p-4 flex flex-col ">
-                <div className="border p-4 rounded-lg duration-1000 text-md font-[350] max-w-full box-shadow flex-1 flex flex-col gap-3">
+         <div className={`border p-4 rounded-lg duration-1000 text-md font-[350]  max-w-full box-shadow flex-1 flex flex-col gap-1 ${secondaryColor}`}>
                     {applicantMessages.map((mes, index) => {
                         const currentDate = getDateCurrentDate(mes.createdAt);
                         if (currentDate !== lastDisplayedDate) {

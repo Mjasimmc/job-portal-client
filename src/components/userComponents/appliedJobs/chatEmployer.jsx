@@ -10,7 +10,7 @@ import { toast_config } from '../../../config/constants';
 import MyChat from '../manageJobs/myChat';
 
 const ChatEmployer = ({ userId, job }) => {
-    const isDarkMode = useSelector(state => state.theme.isDarkMode);
+    const { isDarkMode, secondaryColor } = useSelector(state => state.theme);
     const { applicantId } = useParams();
     const user = useSelector(state => state.user);
     const [sendMessageData, setSendMessageData] = useState('');
@@ -82,8 +82,8 @@ const ChatEmployer = ({ userId, job }) => {
 
     return (
         <>
-            <div className="w-full flex-1 p-4 flex flex-col">
-                <div className="border p-4 rounded-lg duration-1000 text-md font-[350]  max-w-full box-shadow flex-1 flex flex-col gap-1">
+            {applicantMessages.length > 0 && <div className="w-full flex-1 p-4 flex flex-col">
+                <div className={`border p-4 rounded-lg duration-1000 text-md font-[350]  max-w-full box-shadow flex-1 flex flex-col gap-1 ${secondaryColor}`}>
                     {applicantMessages.map((mes, index) => {
                         const currentDate = getDateCurrentDate(mes.createdAt);
                         if (currentDate !== lastDisplayedDate) {
@@ -95,10 +95,10 @@ const ChatEmployer = ({ userId, job }) => {
                                 </Fragment>
                             );
                         }
-                        return <MyChat key={mes._id} mes={mes} chat={user.id === mes.sender}  index={index} />;
+                        return <MyChat key={mes._id} mes={mes} chat={user.id === mes.sender} index={index} />;
                     })}
                 </div>
-            </div>
+            </div>}
             <div className={`w-full fixed bottom-2 left-0 min-w-[300px]`}>
                 <div className="w-full p-2 px-6 xl:px-[5.5rem]">
                     <form

@@ -11,6 +11,7 @@ const UserNotLogged = ({ children }) => {
     const hanldeNavigateLogin = ()=>{
         navigate('/auth/login')
     }
+    
     return (
         <>
             {user && children}

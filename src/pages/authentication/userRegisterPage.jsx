@@ -14,6 +14,7 @@ const UserRegisterPage = () => {
     const navigate = useNavigate()
     return (<>
         <NoHeaderContentBody>
+            <UserLogged />
             <div className='login-css-container w-full max-w-[24rem] border '>
                 <div className="login-css-heading">Sign Up</div>
                 <div action="" className="form">

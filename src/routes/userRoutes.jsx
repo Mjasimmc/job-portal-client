@@ -113,7 +113,9 @@ const UserRoutes = () => {
                             <Route path={PATHS.CREATE} element={<Suspense fallback={<Loading />}><CreateJob /></Suspense>} />
                             <Route path={`${PATHS.SUCCESS}/:jobId`} element={<Suspense fallback={<Loading />}><SuccessPageJobPost /></Suspense>} />
                             <Route path={PATHS.CONTROL} element={<Suspense fallback={<Loading />}><CreatedJobs /></Suspense>} />
-                            <Route path={`${PATHS.MANAGE}/:jobId`} element={<Suspense fallback={<Loading />}><ManageJob /></Suspense>} />
+                            <Route path={`${PATHS.MANAGE}/:jobId`} element={<Outlet />} >
+                                <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><ManageJob /></Suspense>} />
+                            </Route>
 
                             <Route path={`${PATHS.VIEW}/:jobId`} element={<Suspense fallback={<Loading />}><ViewJobPost /></Suspense>} />
                             <Route path={`${PATHS.APPLICANT}/:applicantId`} element={<Suspense fallback={<Loading />}><ApplicantPage /></Suspense>} />

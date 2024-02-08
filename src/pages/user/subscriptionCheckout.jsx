@@ -21,10 +21,9 @@ const SubscriptionCheckout = () => {
     return (
         <div className="w-full  flex flex-col gap-5 max-w-[30rem] py-4 px-2 md:px-10 ">
             <h1 className=' text-4xl font-[850] uppercase list-inside p-2'>{plan?.name}</h1>
-            <h1 className=' text-2xl font-[400] uppercase list-inside '>Price : ${plan?.price}</h1>
+            <h1 className=' text-2xl font-[400] uppercase list-inside '>Price : {"("}<span className='font-[400] text-[18px]'>Rs </span>{plan?.price}{")"} </h1>
             <h1 className=' text-2xl font-[400] uppercase list-inside '>Job Limit : {plan?.jobPostLimit} <span className='text-sm'>count</span></h1>
             <h1 className=' text-2xl font-[400] uppercase list-inside '>Duration : {plan?.duration} <span className='text-sm'>months</span> </h1>
-
             <CheckoutPage plan={plan} />
         </div>
     );

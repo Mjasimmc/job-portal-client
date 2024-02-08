@@ -16,11 +16,11 @@ const CheckoutPage = ({ plan }) => {
         const { name } = plan;
         const productId = plan._id;
         const cost = plan.price;
-        console.log(cost, name, productId, user);
+        // console.log(cost, name, productId, user);
 
         try {
             const res = await createRazorpayInstanceFromServer(cost, plan._id);
-            console.log(res);
+            // console.log(res);
             const options = {
                 key: res.key_id,
                 amount: res.order.amount,
@@ -33,9 +33,12 @@ const CheckoutPage = ({ plan }) => {
                     try {
                         console.log(res.order.receipt)
                         await savePaymentWithPaymentId({ ...response, orderId: res.order.receipt });
-                        navigate(-1)
+                        const data = toast.success('payment successfully completed ')
+                       
+                        navigate('/subscribtion')
                     } catch (error) {
-                        console.log(error)
+                        
+                        console.log('error',error)
                     }
                 },
                 prefill: {
@@ -52,14 +55,8 @@ const CheckoutPage = ({ plan }) => {
             };
             const rzp1 = new Razorpay(options);
             rzp1.on('payment.failed', function (response) {
-                // alert(response.error.code);
-                // alert(response.error.description);
-                // alert(response.error.source);
-                // alert(response.error.step);
-                // alert(response.error.reason);
-                // alert(response.error.metadata.order_id);
-                // alert(response.error.metadata.payment_id);
-                console.log(response.error.description)
+               
+                console.error(response.error.description)
                 toast.error(response.error.description, toast_config)
             });
             rzp1.open();

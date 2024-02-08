@@ -34,7 +34,7 @@ const ListJobs = () => {
             const filteredJobs = await getAdminFilteredData({ ...search });
             setJobs(filteredJobs);
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             toast.error('error occured on fetching jobs', toast_config)
         } finally{
             setLoad(false)

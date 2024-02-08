@@ -11,7 +11,7 @@ const PurchasesList = () => {
     const getPurchaseHistory = async () => {
         try {
             const plans = await getAllPlanPurchases(plan_id)
-            console.log(plans)
+            // console.log(plans)
             setPlanPurchases(plans)
         } catch (error) {
             toast.error('error on fetching purchase history', toast_config)

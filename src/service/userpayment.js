@@ -22,7 +22,6 @@ export const createRazorpayInstanceFromServer = async (amount,planId) => {
 export const savePaymentWithPaymentId = async (order) => {
     try {
         const res = await ApiCall.post('user/credit-uploading-validate-payment',order)
-        console.log(res)
         return res.data
     } catch (error) {
         throw error

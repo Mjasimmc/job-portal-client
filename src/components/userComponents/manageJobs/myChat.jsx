@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 const MyChat = ({ mes, chat, index }) => {
-    const { isDarkMode , primaryColor } = useSelector((state) => state.theme);
+    const { isDarkMode , primaryColor ,secondaryColor } = useSelector((state) => state.theme);
     const [show, setShow] = useState(false);
     const [lineShow, setLineShow] = useState({ number: 1, showShowMore: false });
 
@@ -57,14 +57,14 @@ const MyChat = ({ mes, chat, index }) => {
             {show && (
                 <div className={` pe-0  animate-cards rounded-md flex ${chat ? ' flex-row-reverse' : ''}`}>
                     <div
-                        className={`h-full w-4  ${chat ? 'bg-green-500/50 rounded-br-none' : ' bg-gray-400/50 rounded-bl-none  '}`}
+                        className={`h-full w-4   ${chat ? 'bg-green-500/50 rounded-br-none' : ' bg-gray-400/50 rounded-bl-none  '}`}
                     >
                         <div
-                            className={` h-full w-[1rem]   ${chat ? 'rounded-tl-full' : 'rounded-tr-full'} ${primaryColor}  `}
+                            className={` h-full w-[1rem]   ${chat ? 'rounded-tl-full' : 'rounded-tr-full'} ${secondaryColor}  `}
                         ></div>
                     </div>
                     <div
-                        className={`break-words px-2 !max-w-full rounded-lg grid  gap-2 ${chat ? 'bg-green-500/50  rounded-tr-none' : ' bg-gray-400/50 rounded-tl-none '
+                        className={`break-words !max-w-full rounded-lg grid  p-3 gap-2 ${chat ? 'bg-green-500/50  rounded-tr-none' : ' bg-gray-400/50 rounded-tl-none '
                             }`}
                     >
                         <p style={{ whiteSpace: 'pre-line' }} className='max-w-[60vw]'>
