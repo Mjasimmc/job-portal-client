@@ -13,7 +13,7 @@ import { removeFromSavedList, saveToSavedList } from '../../../service/user/job'
 const JobCards = ({ job, index }) => {
     const user = useSelector(state => state.user);
     const location = useLocation()
-    const { isDarkMode } = useSelector(state => state.theme)
+    const { isDarkMode , secondaryColor } = useSelector(state => state.theme)
     const navigate = useNavigate();
     const [optionDrop, setOptionDrop] = useState(false)
     const [jobApplied, setJobApplied] = useState(false)
@@ -109,7 +109,7 @@ const JobCards = ({ job, index }) => {
     return (
         <>
             {show &&
-                <div className={`flex flex-col max-w-full  duration-300 job-card hover:scale-[1.005] bg-white/5   active:scale-[.9] rounded-lg p-2 px-4  animate-cards ${isDarkMode ? 'border border-[#ff35ab]' : ''}`}>
+                <div className={`flex flex-col max-w-full  duration-300 job-card hover:scale-[1.005] bg-white/5   active:scale-[.9] rounded-lg p-2 px-4  ${secondaryColor} animate-cards ${isDarkMode ? 'border border-[#ff35ab]' : ''}`}>
                     <div className="flex justify-between items-center">
                         <div className="flex-1">
                             <h1 className={`text-lg uppercase p-1 cursor-pointer ${isDarkMode ? 'text-[#3cff52]' : 'text-[#258430]'}`} onClick={() => navigate('/job/view/' + job._id)}><strong>{job.role}  </strong> </h1>
