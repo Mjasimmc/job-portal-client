@@ -53,7 +53,7 @@ const FgtEmail = () => {
 
             toast.success("OTP generated", toast_config);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             toast.error('Error occurred on passing email');
         }
     };
@@ -77,7 +77,7 @@ const FgtEmail = () => {
         try {
             if (!otpdata.email || !pas.password.text) return toast.error("data not found", toast_config)
             const res = await userChangePassword(otpdata.email, pas.password.text)
-            console.log(res)
+            // console.log(res)
             toast.success("password updated", toast_config)
             dispatch(setUserLogin(res))
             navigate('/')

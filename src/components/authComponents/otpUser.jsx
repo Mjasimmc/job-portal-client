@@ -37,7 +37,7 @@ const OtpUser = ({ secondsLeft, timer }) => {
             setLoad(true);
             setResendDisabled(true);
             const res = await resendOtp(params.otpId);
-            console.log(res);
+            // console.log(res);
             timer(30);
         } catch (error) {
             toast.error(error, toast_config);

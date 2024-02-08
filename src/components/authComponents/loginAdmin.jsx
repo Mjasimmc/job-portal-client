@@ -35,7 +35,7 @@ const LoginAdmin = () => {
             dispatch(setAdminLogin(res))
         } catch (error) {
             toast.error(error,toast_config)
-            console.log(error)
+            // console.log(error)
         }
     }
     return (

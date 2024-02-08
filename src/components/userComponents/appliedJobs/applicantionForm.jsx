@@ -18,7 +18,7 @@ const ApplicantionForm = () => {
     const getData = async (applicantionId) => {
         try {
             const applicantDetails = await getApplicantDataWithId(applicantionId)
-            console.log(applicantDetails)
+            // console.log(applicantDetails)
             socket.emit('createRoom', applicantDetails.job_id.user)
             setApplicantData(applicantDetails)
         } catch (error) {

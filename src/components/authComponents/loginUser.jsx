@@ -85,7 +85,7 @@ const LoginUser = () => {
                             inputPlaceholder: "Enter your email address"
                         });
                         const res = await createOtpToValidateEmail(email)
-                        console.log(res)
+                        // console.log(res)
                         navigate('/auth/otp/' + res.otp_id)
                         if (email) {
                             Swal.fire(`Entered email: ${email}`);

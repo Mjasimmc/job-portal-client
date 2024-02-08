@@ -76,7 +76,7 @@ const ApplyForm = () => {
             toast.success("Applied successfully", toast_config);
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             toast.error("Error occurred on submitting", toast_config);
         }
     };
