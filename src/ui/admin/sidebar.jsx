@@ -51,7 +51,6 @@ const AdminSidebar = () => {
             onMouseLeave={() => setSideBarOpen(false)}>
              <div className={`flex-1 max-h-full overflow-y-auto  duration-700  job-card    ${backgrouColor()}`} onMouseLeave={() => setSideBarOpen(false)}>
                 <div className="w-full flex flex-col gap-1 p-1  " >
-
                     {adminSidebarOptions.map((option, i) => (
                         <SideBarOption key={option.keyId} option={option} index={i} setPageOptions={setSideBarOpen} />
                     ))}

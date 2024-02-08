@@ -3,18 +3,23 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { getAllPlanPurchases } from '../../../service/admin/planDatas';
+import Loading from '../../../ui/LoadingPages/Loading';
 
 const PurchasesList = () => {
     const { plan_id } = useParams();
 
     const [planPurchases, setPlanPurchases] = useState([])
+    const [load,setLoad] = useState(false)
     const getPurchaseHistory = async () => {
         try {
+            setLoad(true)
             const plans = await getAllPlanPurchases(plan_id)
             // console.log(plans)
+            setLoad(false)
             setPlanPurchases(plans)
         } catch (error) {
             toast.error('error on fetching purchase history', toast_config)
+            setLoad(false)
         }
     }
     const ViewDate = (date) => {
@@ -25,6 +30,10 @@ const PurchasesList = () => {
     useEffect(() => {
         getPurchaseHistory()
     }, []);
+
+    if(load){
+        return <Loading />
+    }
     return (
         <>
             <div className="w-full overflow-auto">
