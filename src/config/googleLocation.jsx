@@ -18,7 +18,7 @@ const LocationInputField = ({ setValue, value, getVal }) => {
   }, [scriptLoaded]);
   const handleAutoComplete = (id) => {
     if (isLoaded) {
-      console.log(isLoaded)
+      // console.log(isLoaded)
       const autocomplete = new window.google.maps.places.Autocomplete(
         document.getElementById(id),
         {
@@ -30,7 +30,7 @@ const LocationInputField = ({ setValue, value, getVal }) => {
 
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
-        console.log(place)
+        // console.log(place)
         setValue(place[getVal ? getVal : 'formatted_address'])
       });
     }

@@ -14,7 +14,7 @@ const SubstribtionPlan = () => {
         try {
             setLoad(true)
             const res = await userGetAllSubscriptionPlans()
-            console.log(res)
+            // console.log(res)
             setPlans(res)
         } catch (error) {
             console.log(error)

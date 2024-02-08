@@ -24,10 +24,10 @@ const UserSubscriptionData = ({showPaymentHistory}) => {
         try {
             const data = await userGetSelfPlanDetails();
             setPaymentHistory(data.paymentHistory)
-            console.log(data.paymentHistory)
+            // console.log(data.paymentHistory)
             setPlanDetails(data.plan);
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     };
     useEffect(() => {
@@ -64,7 +64,7 @@ const UserSubscriptionData = ({showPaymentHistory}) => {
                     <h1 className='text-center text-2xl font-[850] uppercase list-inside p-4'>{payment?.plan.name}</h1>
                     <h1 className='text-center text-xl font-[400] uppercase list-inside '>Post Limit : {payment?.plan.jobPostLimit}</h1>
                     <h1 className='text-center text-xl font-[400] uppercase list-inside underline underline-offset-8 p-4 '>paid : {payment.amount}</h1>
-                    <h1 className='text-center text-lg font-[400] uppercase list-inside underline underline-offset-8 p-4 '>paid at {formatDateToDDMMYYYY(payment.updatedAt)}</h1>
+                    <h1 className='text-center text-xs   font-[400]     '>Paid At <br /> {formatDateToDDMMYYYY(payment.updatedAt)}</h1>
 
                 </div>))}
 

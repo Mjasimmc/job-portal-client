@@ -3,6 +3,8 @@ import JobCards from './jobCards';
 import { employerGetJobData } from '../../../service/userJobMangement';
 import { useEffect } from 'react';
 import Loading from '../../../ui/LoadingPages/Loading';
+import { toast } from 'react-toastify';
+import { toast_config } from '../../../config/constants';
 
 const MyJobList = () => {
     const [jobs, setJobs] = useState([]);
@@ -12,11 +14,11 @@ const MyJobList = () => {
         try {
             setLoad(true)
             const jobData = await employerGetJobData()
-            console.log(jobData)
+            // console.log(jobData)
             setJobs(jobData)
         } catch (error) {
-            console.log(error)
-            alert("server error")
+            // console.log(error)
+            toast.error("server error",toast_config)
         } finally {
             setLoad(false)
         }
