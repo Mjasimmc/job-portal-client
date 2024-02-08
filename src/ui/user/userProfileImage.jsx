@@ -52,8 +52,8 @@ const UserProfileImage = () => {
 
                     {sideOptions && (
                         <div
-                            className={`fixed right-4 rounded-lg gap-1 top-[5.5rem] grid max-w-[9rem] w-full  ${
-                                isDarkMode ? 'bg-black' : 'bg-white'
+                            className={`fixed right-4 rounded-lg gap-1 top-[5.5rem] grid max-w-[12rem] w-full  ${
+                                isDarkMode ? 'bg-black border border-[#232391]' : 'bg-white'
                             }`}
                             onMouseLeave={() => setSideOptions(false)}
                         >
@@ -85,8 +85,8 @@ const UserProfileImage = () => {
                                         <p> {email.mail_id}</p>
                                     </div>
                                 </div>
-                                <Button
-                                    className="shadow !flex !justify-start !p-1 !px-3 "
+                                <button
+                                    className="shadow !flex !justify-start !p-1 !px-3  border border-[#4343ff7d] "
                                     onClick={() => {
                                         setSideOptions(false);
                                         navigate('/profile');
@@ -95,9 +95,9 @@ const UserProfileImage = () => {
                                     <p  className={`!text-xs flex items-center gap-1 ${ isDarkMode ? 'text-white' : 'text-black'}`}>
                                         <Person className="!text-md aspect-square  " /> Profile
                                     </p>
-                                </Button>
-                                <Button
-                                    className="shadow !flex !justify-start !p-1 !px-3 "
+                                </button>
+                              <button
+                                    className="shadow !flex !justify-start !p-1 !px-3  border border-[#4343ff7d] "
                                     onClick={() => {
                                         setSideOptions(false);
                                         navigate('/subscribtion');
@@ -107,9 +107,9 @@ const UserProfileImage = () => {
                                         <Subscriptions className="!text-md aspect-square " />{' '}
                                         Subscription
                                     </p>
-                                </Button>
-                                <Button
-                                    className="shadow !flex !justify-start !p-1 !px-3 "
+                                 </button>
+                               <button
+                                    className="shadow !flex !justify-start !p-1 !px-3  border border-[#4343ff7d] "
                                     sx={{ zIndex: 9999 }}
                                 >
                                     <p
@@ -118,7 +118,7 @@ const UserProfileImage = () => {
                                     >
                                         <Logout className={`!text-md aspect-square `} /> Logout
                                     </p>
-                                </Button>
+                               </button>
                             </Box>
                         </div>
                     )}
