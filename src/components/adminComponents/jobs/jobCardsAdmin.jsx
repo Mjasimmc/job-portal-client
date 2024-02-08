@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const JobCardsAdmin = ({ job }) => {
-    const { isDarkMode } = useSelector(state => state.theme)
+    const { isDarkMode , secondaryColor }= useSelector(state => state.theme)
 
     const optionMange = useMemo(() => [
         {
@@ -25,7 +25,7 @@ const JobCardsAdmin = ({ job }) => {
         return nonEmptyLines.join('\n');
     };
     return (
-        <div className="flex flex-col justify-between job-card bg-white/5 rounded-lg p-2 px-4  ">
+        <div className={`flex flex-col justify-between  job-card bg-white/5 rounded-lg p-2 px-4  ${secondaryColor}`}>
             <div className="flex justify-between items-center">
                 <div className="flex-1"><h1 className='text-lg uppercase p-1 cursor-pointer ' onClick={() => navigate('/admin/jobs/view/' + job._id)}><strong>{job.role}  </strong> </h1></div>
                 <div className="relative ">

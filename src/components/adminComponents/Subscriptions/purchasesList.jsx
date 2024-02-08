@@ -29,6 +29,8 @@ const PurchasesList = () => {
         <>
             <div className="w-full overflow-auto">
                 <div className='w-full grid gap-2 p-4 min-w-[25rem]'>
+
+                    {planPurchases.length === 0 && <p className='w-full text-[2rem]'>No Purahcase Found</p>}
                     {planPurchases.map((purchase, i) => (<Fragment key={purchase._id}>
                         <div className="w-full flex flex-wrap justify-between items-center border p-2">
                             <div className="flex gap-4">

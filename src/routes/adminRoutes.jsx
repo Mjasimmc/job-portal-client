@@ -50,8 +50,6 @@ const AdminRoutes = () => {
                         <Route path={PATHS.CREATE} element={<CreateSubscriptionPlanPage />} />
                         <Route path={`${PATHS.EDIT}/:plan_id`} element={<EditPlan />} />
                         <Route path={`${PATHS.PURCHASES}/:plan_id`} element={<PurchasesList />} />
-
-
                     </Route>
                     <Route path={PATHS.USERS} element={<Outlet />}>
                         <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><UsersPage /></Suspense>} />

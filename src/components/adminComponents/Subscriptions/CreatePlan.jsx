@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { adminCreateSubscription } from '../../../service/subscription';
+import InputTextField from '../../../ui/elements/InputTextField';
 // import { createSubscriptionPlan } from '../../../service/subscriptionPlan'; 
 
 const CreateSubscriptionPlan = () => {
@@ -39,18 +40,18 @@ const CreateSubscriptionPlan = () => {
                 <h1 className="text-2xl font-[300] uppercase p-3 text-center ">Create new subscription plan</h1>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Plan Name"
-                        fullWidth
+                    
                         value={planData.name}
                         onChange={(e) => handleDataInput(e.target.value, 'name')}
                     />
                 </div>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Duration (in months)"
-                        fullWidth
+                        
                         type="number"
                         value={planData.duration}
                         onChange={(e) => handleDataInput(e.target.value, 'duration')}
@@ -58,9 +59,9 @@ const CreateSubscriptionPlan = () => {
                 </div>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Cost"
-                        fullWidth
+                        
                         type="number"
                         value={planData.cost}
                         onChange={(e) => handleDataInput(e.target.value, 'cost')}
@@ -68,9 +69,9 @@ const CreateSubscriptionPlan = () => {
                 </div>
 
                 <div className="grid">
-                    <TextField
+                    <InputTextField
                         label="Job Limit"
-                        fullWidth
+                        
                         type="number"
                         value={planData.jobLimit}
                         onChange={(e) => handleDataInput(e.target.value, 'jobLimit')}
