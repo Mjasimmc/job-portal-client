@@ -7,7 +7,7 @@ const SubscriptionPlan  = lazy(()=> import('../pages/admin/subscriptionPlan' ))
 const EditPlan  = lazy(()=> import('../components/adminComponents/Subscriptions/editPlan' ))
 const JobsPage  = lazy(()=> import('../pages/admin/jobsPage' ))
 const ViewJobData  = lazy(()=> import('../components/adminComponents/jobs/viewJobData' ))
-const PurchasesList  = lazy(()=> import('../components/adminComponents/subscriptions/purchasesList' ))
+const PurchasesList  = lazy(()=> import('../components/adminComponents/Subscriptions/purchasesList' ))
 const ViewUser  = lazy(()=> import('../components/adminComponents/users/viewUser' ))
 
 
