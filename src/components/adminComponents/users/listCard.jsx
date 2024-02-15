@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { blockUser, unBlockUser } from '../../../service/admin/user';
+import { useNavigate } from 'react-router-dom';
 
 const ListCard = ({ user, i }) => {
+    const navigate = useNavigate()
     const { isDarkMode } = useSelector(state => state.theme);
     const [userBlocked, setUserBlocked] = useState(user.block);
 
