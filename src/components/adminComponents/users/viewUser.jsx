@@ -8,7 +8,7 @@ import UserEmployee from './userEmployee';
 const ViewUser = () => {
 
     const [userData, setUserData] = useState(null)
-  
+
 
     const [load, setLoad] = useState(false)
     const { userId } = useParams()
@@ -18,7 +18,7 @@ const ViewUser = () => {
         setLoad(true)
         try {
             const user = await getUserDataForAdmin(userId)
-          
+
             setUserData(user)
         } catch (error) {
 
@@ -53,8 +53,8 @@ const ViewUser = () => {
                 </div>
             </div>
 
-            <div className="">
-            <UserEmployee />
+            <div className="max-md:w-full md:w-8/12 shadows py-4 px-8">
+                <UserEmployee />
             </div>
         </div>
     );

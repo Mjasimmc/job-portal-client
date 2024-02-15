@@ -1,15 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Route, useNavigate } from 'react-router-dom';
 import { getAllUsersData } from '../../../service/admin/admin';
 import MyButton from '../../../ui/elements/myButton';
 import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { Block, Edit, RemoveRedEye } from '@mui/icons-material';
 import Loading from '../../../ui/LoadingPages/Loading';
+import { useSelector } from 'react-redux';
+import ListCard from './listCard';
 
 const UsersList = () => {
     const navigate = useNavigate()
     const [userList, setUserList] = useState([])
+    
     const [load, setLoad] = useState(false)
     const getAllUsers = async () => {
         try {
@@ -46,29 +49,13 @@ const UsersList = () => {
                         </thead>
                         <tbody>
 
-                            {userList.map((user, i) => (<Fragment key={user._id}>
-                                <tr className='border'>
-                                    <td>
-                                        {i + 1}
-                                    </td>
-                                    <td>
-                                        {user.name}
-                                    </td>
-                                    <td>
-                                        {user.email.mail_id}
-                                    </td>
-                                    <td>
-                                        {user.phone.number}
-                                    </td>
-                                    <td className='flex flex-wrap gap-4 justify-center p-2'>
-                                        <button onClick={()=>navigate('/admin/users/view/'+user._id)}>
-                                            <RemoveRedEye className='text-[#000000]' />
-                                        </button>
-                                        {/* <Edit className='text-[#000000]' /> */}
-                                        <Block className='text-[#ff0000]' />
-                                    </td>
-                                </tr>
-                            </Fragment>))}
+                            {userList.map((user, i) => {
+
+                                
+                                return (<Fragment key={user._id}>
+                                   <ListCard user={user} i={i}/>
+                                </Fragment>)
+                            })}
                         </tbody>
                     </table>
                     <hr />

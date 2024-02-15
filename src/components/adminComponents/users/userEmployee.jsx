@@ -35,11 +35,12 @@ const UserEmployee = () => {
         return <h1>No Data Found</h1>
     }
     return (<>
-        <div className="p-2 grid grid-cols-2">
-            <p>Full Name</p><p>{employeeData.full_name}</p>
-            <p>Email</p><p>{employeeData.email}</p>
-            <p>Phone</p><p>{employeeData.phone}</p>
-            <div className="col-span-2 flex gap-4">
+        <h1 className='font-[500] text-[24px]'>Employee Data</h1>
+        <div className="p-2 grid gap-2">
+            <p>Full Name : {employeeData.full_name}</p>
+            <p>Email : {employeeData.email}</p>
+            <p>Phone : {employeeData.phone}</p>
+            <div className="flex gap-4">
                 {employeeData.gitHub && <a href={employeeData.gitHub}>GitHub : {employeeData.gitHub} </a>}
                 {employeeData.linkedIn && <a href={employeeData.linkedIn}>LinkedIn : {employeeData.linkedIn}</a>}
             </div>
@@ -51,7 +52,6 @@ const UserEmployee = () => {
                         }`}</p>
                     <p className='text-lg'>{edu.course}</p>
                     <p className='text-md'>{edu.college}</p>
-                    <MyButton onClick={() => navigate('edit-profile-data')} >Edit<Edit /> </MyButton>
                 </div>
             ))}
         </div>}
@@ -62,7 +62,6 @@ const UserEmployee = () => {
                         }`}</p>
                     <p className='text-lg'>{exp.position}</p>
                     <p className='text-md'>{exp.company}</p>
-                    <MyButton onClick={() => navigate('edit-profile-data')} className='px-2'>Edit<Edit /> </MyButton>
                 </div>
             ))}
         </div>}

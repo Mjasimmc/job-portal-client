@@ -7,6 +7,7 @@ import MyButton from '../../../ui/elements/myButton';
 import { getAllEmployeeResumes } from '../../../service/resumeMangement';
 import { BaseURL } from '../../../config_Api';
 import Loading from '../../../ui/LoadingPages/Loading';
+import { useSelector } from 'react-redux';
 
 const EmployeeProfile = () => {
     const [employeeData, setEmployeeData] = useState(null);
@@ -15,7 +16,7 @@ const EmployeeProfile = () => {
     const [resumes, setResumeData] = useState([]);
     const [load,setLoad] = useState(true)
     const navigate = useNavigate();
-
+   
     const getEmployeesData = async () => {
         try {
             setLoad(true)
