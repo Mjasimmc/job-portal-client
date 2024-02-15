@@ -2,12 +2,13 @@ import React, { Suspense, lazy } from 'react';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import Loading from '../ui/LoadingPages/Loading';
 // import SubscriptionPlan from '../pages/admin/subscriptionPlan';
-import CreateSubscriptionPlanPage from '../pages/admin/createSubscriptionPlan';
-import SubscriptionPlan from '../pages/admin/subscriptionPlan';
-import EditPlan from '../components/adminComponents/Subscriptions/editPlan';
-import JobsPage from '../pages/admin/jobsPage';
-import ViewJobData from '../components/adminComponents/jobs/viewJobData';
-import PurchasesList from '../components/adminComponents/Subscriptions/purchasesList';
+const CreateSubscriptionPlanPage  = lazy(()=> import('../pages/admin/createSubscriptionPlan' ))
+const SubscriptionPlan  = lazy(()=> import('../pages/admin/subscriptionPlan' ))
+const EditPlan  = lazy(()=> import('../components/adminComponents/Subscriptions/editPlan' ))
+const JobsPage  = lazy(()=> import('../pages/admin/jobsPage' ))
+const ViewJobData  = lazy(()=> import('../components/adminComponents/jobs/viewJobData' ))
+const PurchasesList  = lazy(()=> import('../components/adminComponents/subscriptions/purchasesList' ))
+const ViewUser  = lazy(()=> import('../components/adminComponents/users/viewUser' ))
 
 
 
@@ -54,6 +55,7 @@ const AdminRoutes = () => {
                     <Route path={PATHS.USERS} element={<Outlet />}>
                         <Route path={PATHS.HOME} element={<Suspense fallback={<Loading />}><UsersPage /></Suspense>} />
                         <Route path={PATHS.CREATE} element={<Suspense fallback={<Loading />}><CreateUserPage /></Suspense>} />
+                        <Route path={`${PATHS.VIEW}/:userId`} element={<Suspense fallback={<Loading />}><ViewUser /></Suspense>} />
                     </Route>
                 </Route>
                 <Route path={PATHS.LOGIN} element={<Suspense fallback={<Loading />}><AdminLoginPage /></Suspense>} />

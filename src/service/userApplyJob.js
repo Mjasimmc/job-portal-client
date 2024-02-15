@@ -22,6 +22,7 @@ export const validateJobApplied = async (jobId)=>{
 export const getAllAppliedJobs = async ()=>{
     try {
         const applications = await ApiCall.get('user/get-all-applied-jobs')
+      console.log(applications)
         return applications.data
     } catch (error) {
         console.log(error);

@@ -30,7 +30,7 @@ const LocationInputField = ({ setValue, value, getVal }) => {
 
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
-        // console.log(place)
+        console.log(place)
         setValue(place[getVal ? getVal : 'formatted_address'])
       });
     }

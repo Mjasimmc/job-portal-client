@@ -21,11 +21,46 @@ const EditEmployeeProfile = () => {
     const [changes, setChanges] = useState(null);
 
     const handleInput = (key, value) => {
-
         setEmployeeData({ ...employeeData, [key]: value });
     };
 
     const saveEmployeeProfile = async () => {
+        // Validation for full name
+        if (employeeData.full_name.trim() === "") {
+            toast.error("Please provide a full name", toast_config);
+            return;
+        }
+
+        // Validation for email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(employeeData.email)) {
+            toast.error("Please provide a valid email address", toast_config);
+            return;
+        }
+
+        // Validation for phone number
+        const phonePattern = /^\d{10}$/; // Assuming a simple 10-digit number for this example
+        if (!phonePattern.test(employeeData.phone)) {
+            toast.error("Please provide a valid phone number", toast_config);
+            return;
+        }
+
+        // Validation for GitHub and LinkedIn links (if provided)
+        const urlPattern = /^(https?:\/\/)?(www\.)?(linkedin\.com\/\w+|github\.com\/\w+)/i;
+
+        // Validation for GitHub link
+        if (employeeData.gitHub && !urlPattern.test(employeeData.gitHub)) {
+            toast.error("Please provide a valid GitHub link", toast_config);
+            return;
+        }
+        
+        // Validation for LinkedIn link
+        if (employeeData.linkedIn && !urlPattern.test(employeeData.linkedIn)) {
+            toast.error("Please provide a valid LinkedIn link", toast_config);
+            return;
+        }
+
+        // All validations passed, proceed to save the profile
         try {
             await updateEmployeeProfile(employeeData);
             navigate(-1)
@@ -87,13 +122,13 @@ const EditEmployeeProfile = () => {
                 <div className="w-full grid gap-2 m-2  max-w-4xl">
                     <InputTextField
                         className='!caret-black'
-                        label="GitHub Link" value={employeeData.linkedIn}
-                        onChange={({ target: { value } }) => handleInput('linkedIn', value)}
+                        label="GitHub Link" value={employeeData.gitHub}
+                        onChange={({ target: { value } }) => handleInput('gitHub', value)}
                     />
                     <InputTextField
                         className='!caret-black'
-                        label="LinkedIn Link" value={employeeData.gitHub}
-                        onChange={({ target: { value } }) => handleInput('gitHub', value)}
+                        label="LinkedIn Link" value={employeeData.linkedIn}
+                        onChange={({ target: { value } }) => handleInput('linkedIn', value)}
                     />
                 </div>
                 {changes !== employeeData && <div className="w-full flex justify-center m-5">

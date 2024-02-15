@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { toast_config } from '../../../config/constants';
 import { adminCreateSubscription } from '../../../service/subscription';
 import InputTextField from '../../../ui/elements/InputTextField';
-// import { createSubscriptionPlan } from '../../../service/subscriptionPlan'; 
 
 const CreateSubscriptionPlan = () => {
     const navigate = useNavigate();
@@ -24,13 +23,39 @@ const CreateSubscriptionPlan = () => {
         }));
     };
 
+    const validateInputs = () => {
+        if (planData.name.trim() === '') {
+            toast.error('Plan name cannot be empty or contain only spaces', toast_config);
+            return false;
+        }
+
+        if (isNaN(planData.duration) || planData.duration <= 0) {
+            toast.error('Duration should be a greater than zero', toast_config);
+            return false;
+        }
+
+        if (isNaN(planData.cost) || planData.cost <= 0) {
+            toast.error('Cost should be a greater than zero', toast_config);
+            return false;
+        }
+
+        if (isNaN(planData.jobLimit) || planData.jobLimit <= 0) {
+            toast.error('Job limit should be a greater than zero', toast_config);
+            return false;
+        }
+
+        return true;
+    };
+
     const submitSubscriptionPlan = async () => {
-        try {
-            const res = await adminCreateSubscription(planData)
-            navigate(-1);
-            toast.success(res, toast_config);
-        } catch (error) {
-            toast.error(error, toast_config);
+        if (validateInputs()) {
+            try {
+                const res = await adminCreateSubscription(planData);
+                navigate(-1);
+                toast.success(res, toast_config);
+            } catch (error) {
+                toast.error(error, toast_config);
+            }
         }
     };
 
@@ -42,7 +67,6 @@ const CreateSubscriptionPlan = () => {
                 <div className="grid">
                     <InputTextField
                         label="Plan Name"
-                    
                         value={planData.name}
                         onChange={(e) => handleDataInput(e.target.value, 'name')}
                     />
@@ -51,7 +75,6 @@ const CreateSubscriptionPlan = () => {
                 <div className="grid">
                     <InputTextField
                         label="Duration (in months)"
-                        
                         type="number"
                         value={planData.duration}
                         onChange={(e) => handleDataInput(e.target.value, 'duration')}
@@ -61,7 +84,6 @@ const CreateSubscriptionPlan = () => {
                 <div className="grid">
                     <InputTextField
                         label="Cost"
-                        
                         type="number"
                         value={planData.cost}
                         onChange={(e) => handleDataInput(e.target.value, 'cost')}
@@ -71,7 +93,6 @@ const CreateSubscriptionPlan = () => {
                 <div className="grid">
                     <InputTextField
                         label="Job Limit"
-                        
                         type="number"
                         value={planData.jobLimit}
                         onChange={(e) => handleDataInput(e.target.value, 'jobLimit')}

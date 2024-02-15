@@ -30,14 +30,14 @@ const CheckoutPage = ({ plan }) => {
                 currency: 'INR',
                 name: 'Acme Corp',
                 description: 'Test Transaction',
-                image: 'http://localhost:3000/src/assets/logo.png',
+                // image: 'http://localhost:3000/src/assets/logo.png',
                 order_id: res.order.id,
                 handler: async (response) => {
                     try {
                         setLoad(true)
                         console.log(res.order.receipt)
                         await savePaymentWithPaymentId({ ...response, orderId: res.order.receipt });
-                        const data = toast.success('payment successfully completed ')
+                        toast.success('payment successfully completed ')
                         setLoad(false)
                         navigate('/subscribtion')
                     } catch (error) {

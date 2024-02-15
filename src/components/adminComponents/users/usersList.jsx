@@ -61,8 +61,10 @@ const UsersList = () => {
                                         {user.phone.number}
                                     </td>
                                     <td className='flex flex-wrap gap-4 justify-center p-2'>
-                                        <RemoveRedEye className='text-[#4aff6b]' />
-                                        <Edit className='text-[#000000]' />
+                                        <button onClick={()=>navigate('/admin/users/view/'+user._id)}>
+                                            <RemoveRedEye className='text-[#000000]' />
+                                        </button>
+                                        {/* <Edit className='text-[#000000]' /> */}
                                         <Block className='text-[#ff0000]' />
                                     </td>
                                 </tr>
