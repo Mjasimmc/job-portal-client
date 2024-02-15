@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import UserRoutes from "./routes/userRoutes"
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -25,6 +25,8 @@ function App() {
       socket.emit('createRoom', user._id);
       dispatch(setUserLogin(user));
     } catch (error) {
+
+      toast.error(error)
       console.error("Authentication error:", error);
       dispatch(setUserLogout());
     }
@@ -39,8 +41,8 @@ function App() {
   useEffect(() => {
     const handleDisconnect = () => {
       console.log("Socket disconnected");
-        // Reconnect the socket when disconnected.
-        // socket.connect({ secure: true });
+      // Reconnect the socket when disconnected.
+      // socket.connect({ secure: true });
       // Optionally, you can emit events or perform other actions on reconnection.
       socket.emit('reconnectEvent', { secure: true });
     };
@@ -55,17 +57,17 @@ function App() {
 
   return (<>
     <BrowserRouter>
-        {serverError && <Error500 />}
-        {!serverError && (
-          <>
-            
-              <UserRoutes />
-              <AdminRoutes />
-          
-          </>
-        )}
-      </BrowserRouter>
-      {/* <ToastContainer /> */}
+      {serverError && <Error500 />}
+      {!serverError && (
+        <>
+
+          <UserRoutes />
+          <AdminRoutes />
+
+        </>
+      )}
+    </BrowserRouter>
+    {/* <ToastContainer /> */}
 
   </>
   )

@@ -15,9 +15,9 @@ const SubscriptionPlan = () => {
             try {
                 setLoad(true)
                 const res = await adminGetAllSubscriptionPlanData();
-                console.log('Original plans:', res);
+            
                 const sortedPlans = res.sort((a, b) => b.price - a.price);
-                console.log('Sorted plans:', sortedPlans);
+              
                 setPlans(sortedPlans);
             } catch (error) {
                 console.error('Error fetching data:', error);
