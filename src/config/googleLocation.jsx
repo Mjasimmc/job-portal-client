@@ -2,7 +2,7 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import { useEffect, useMemo, useState } from "react";
 import InputTextField from "../ui/elements/InputTextField";
 const api_key = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
-const LocationInputField = ({ setValue, value, getVal }) => {
+const LocationInputField = ({ setValue, value, getVal, ...restProps }) => {
   const libraries = useMemo(() => ['places'], []);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -42,6 +42,7 @@ const LocationInputField = ({ setValue, value, getVal }) => {
   // return { isLoaded, loadError };
   return (<>
     <InputTextField
+      {...restProps}
       className='!caret-black'
       label='Location'
       id='location'

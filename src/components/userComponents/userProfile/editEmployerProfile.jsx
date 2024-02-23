@@ -31,7 +31,7 @@ const EditEmployerProfile = () => {
         } else if (type === 'company_website') {
             setEmployerData({ ...employerData, [type]: { text: value, valid: validate('url', value) } })
         } else {
-            setEmployerData((prevData)=>{ return { ...prevData, [type]: { text: value, valid: value.length > 1 } }})
+            setEmployerData((prevData) => { return { ...prevData, [type]: { text: value, valid: value.length > 1 } } })
         }
     }
     const validateData = (data) => {
@@ -92,9 +92,9 @@ const EditEmployerProfile = () => {
     }, [])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(employerData)
-    },[employerData])
+    }, [employerData])
 
 
 
@@ -116,6 +116,7 @@ const EditEmployerProfile = () => {
 
                     <div className="md:!col-span-6 !caret-black grid">
                         <InputTextField
+                            labelShow={true}
                             label={"company name"}
                             value={employerData.company_name.text}
                             error={!employerData.company_name.valid}
@@ -127,18 +128,20 @@ const EditEmployerProfile = () => {
                     <p className=' md:col-span-4 flex items-center'>Company Location : </p>
 
                     <div className="md:!col-span-6 !caret-black grid">
-                       <LocationInputField
+                        <LocationInputField
+                            labelShow={true}
                             value={employerData.company_location.text}
                             setValue={(value) => {
                                 handleInput(value, 'company_location')
                             }}
-                       
-                       />
+
+                        />
                     </div>
                     <p className=' md:col-span-4 flex items-center'>Website : </p>
                     <div className="md:!col-span-6 !caret-black grid">
                         <InputTextField
                             label={"company_website "}
+                            labelShow={true}
                             value={employerData.company_website.text}
                             error={!employerData.company_website.valid}
 
@@ -151,6 +154,7 @@ const EditEmployerProfile = () => {
                     <div className="md:!col-span-6 !caret-black grid">
                         <InputTextField
                             label={"company_email "}
+                            labelShow={true}
                             value={employerData.company_email.text}
                             error={!employerData.company_email.valid}
                             onChange={(e) => {
@@ -167,17 +171,19 @@ const EditEmployerProfile = () => {
                     <div className="md:!col-span-6 !caret-black grid">
                         <InputTextField
                             label={"employer_name "}
+                            labelShow={true}
                             value={employerData.employer_name.text}
                             error={!employerData.employer_name.valid}
                             onChange={(e) => {
                                 handleInput(e.target.value, 'employer_name')
                             }}
                             className='md:!col-span-6 !caret-black' type='text' />
-                     </div>
+                    </div>
                     <p className=' md:col-span-4 flex items-center'> Position At Company : </p>
                     <div className="md:!col-span-6 !caret-black grid">
                         <InputTextField
                             label={"Employer Position"}
+                            labelShow={true}
                             value={employerData.employer_position.text}
                             error={!employerData.employer_position.valid}
                             onChange={(e) => {
@@ -189,6 +195,7 @@ const EditEmployerProfile = () => {
                     <div className="md:!col-span-6 !caret-black grid">
                         <InputTextField
                             label={"employer_contact"}
+                            labelShow={true}
                             error={!employerData.employer_contact.valid}
                             value={employerData.employer_contact.text}
                             onChange={(e) => {

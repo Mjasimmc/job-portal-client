@@ -2,7 +2,7 @@ import axios from 'axios'
 const renderServer = 'https://server-careerharbor.onrender.com'
 // const awsServer = 'http://13.60.23.95'
 const localServer = 'http://localhost:4000'
-export const BaseURL = renderServer
+export const BaseURL = localServer
 
 
 const ApiCall = axios.create({

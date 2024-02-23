@@ -41,13 +41,13 @@ const AdminSidebar = () => {
         sideBarOpen,
         setSideBarOpen
     } = useContext(AdminContext)
-    const {primaryColor} = useSelector(state => state.theme)
+    const {primaryColor , isDarkMode} = useSelector(state => state.theme)
     const backgrouColor = () => {
         return primaryColor
     }
     return (<>
 
-        <section className={`fixed left-0 top-0 z-[90] duration-500 !w-[12rem] flex gap-1 shadow   shadow-gray-500/50 pt-0 sidebar-height  flex-col ${sideBarOpen ? "max-lg:-translate-x-[0] " : 'max-lg:-translate-x-[100%]'}`}
+        <section className={`fixed left-0 top-0 z-[90] duration-500 !w-[12rem] flex gap-1 pt-0 sidebar-height  flex-col${isDarkMode && ' shadow   shadow-gray-500/50'} ${sideBarOpen ? "max-lg:-translate-x-[0] " : 'max-lg:-translate-x-[100%]'}`}
             onMouseLeave={() => setSideBarOpen(false)}>
              <div className={`flex-1 max-h-full overflow-y-auto  duration-700  job-card    ${backgrouColor()}`} onMouseLeave={() => setSideBarOpen(false)}>
                 <div className="w-full flex flex-col gap-1 p-1  " >
